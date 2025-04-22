@@ -6,7 +6,7 @@ El diseño visual está hecho completamente con **CSS personalizado**, sin frame
 
 Además, el juego se alimenta de datos en tiempo real desde la API pública de **[REST Countries](https://restcountries.com/)** para generar algunas de las preguntas relacionadas con países del mundo.
 
-## 🌟 Características principales
+## 🌟 Características principales del juego
 
 - 🎯 **3 tipos de preguntas**:
   - ¿Cuál es el país de esta capital?
@@ -41,13 +41,30 @@ preguntados/<br/>
 ├── app.js &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Lógica principal del juego<br/>
 └── README.md&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Descripcion y detalles importantes del sistema<br/>
 
-Nota:EL directorio puede diferi, pero esta es, la estructura basica.<br/>
+Nota:EL directorio puede diferi, pero esta es la estructura basica.<br/>
 
 ## ▶️ Cómo ejecutar el proyecto
 
-1. Cloná el repositorio:
+1. **Cloná el repositorio:**
 
    ```bash
    git clone https://github.com/mpirizdutra89/Final-web2.git
    cd Final-web2 (ir al directorio de la clonacion)
    ```
+
+2. **Instalar dependecias y ejecucion:**
+
+```bash
+    npm install
+    npm start
+```
+
+## Deploy en [alwaysdata](https://www.alwaysdata.com/en/) :
+
+<a href="https://youtu.be/zzwdLrSNgJw" target="_blank">
+  <img src="https://i3.ytimg.com/vi/zzwdLrSNgJw/maxresdefault.jpg" alt="Ver demo en YouTube">
+</a>
+
+## ✍️ Autor
+
+- Desarrollado por Martin Nicolas Piriz Dutra – [@mpirizdutra89](https://github.com/mpirizdutra89/)
