@@ -25,7 +25,8 @@ Además, el juego se alimenta de datos en tiempo real desde la API pública de *
 
 ## 🚀 Tecnologías utilizadas
 
-- [Node.js](https://nodejs.org/) – entorno de ejecución JavaScript
+- [Node.js](https://nodejs.org/) – entorno de ejecución JavaScript (version 20.14.0 local
+)
 - [Express](https://expressjs.com/) – framework para servidores web
 - [Pug](https://pugjs.org/) – motor de plantillas para HTML
 - [REST Countries API](https://restcountries.com/) – para obtener datos de países
@@ -58,6 +59,10 @@ Nota:EL directorio puede diferi, pero esta es la estructura basica.<br/>
     npm install
     npm start
 ```
+
+2. **Ingresar al juego**
+
+   - <a href="http://localhost:3000/" target="_blank">Url del juego en local</a> <br/><br/>
 
 ## 🎥 Deploy en [alwaysdata](https://www.alwaysdata.com/en/) :
 
