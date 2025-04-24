@@ -1,152 +1,646 @@
-* {
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  body {
-    margin: 0;
-    padding:60px 0px;
-    background: linear-gradient(to right, #74ebd5, #acb6e5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-  }
-  
-  .container {
-    background-color: white;
-    padding: 30px 40px;
-    border-radius: 20px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    width: 100%;
-    max-width: 500px;
-  }
-  
-  h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 25px;
-  }
-  
-  .campo {
-    margin-bottom: 15px;
+/* body {
     display: flex;
     flex-direction: column;
-  }
-  
-  .campo label {
-    margin-bottom: 5px;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: rgb(27, 38, 44);
+    color: rgb(187, 225, 250);
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.banner {
+    background-color: rgb(230, 57, 70);
+    color: white;
+    font-size: 24px;
     font-weight: bold;
-    color: #555;
-  }
-  
-  .campo input,
-  .campo select {
+    text-align: center;
+    padding: 20px 0px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.puntos {
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 12px;
+}
+
+.perfil {
+    width: 50px;
+    height: 50px;
+    background-color: #ddd;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #fff;
+}
+
+.perfil img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.texto-banner {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding-right: 6%;
+}
+
+.contenedor-juego {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 90%;
+    max-width: 400px;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+}
+
+.caja-pregunta {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.caja-respuestas {
+    background: transparent;
+    width: 100%;
+    text-align: center;
+}
+
+.pregunta {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.opcion {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.1s ease, background 0.2s ease;
+}
+
+.opcion:hover {
+    background: #E63946;
+    color: white;
+    transform: scale(1.05);
+}
+
+.opcion:focus {
     outline: none;
-    transition: border-color 0.3s;
-  }
-  
-  .campo input:focus,
-  .campo select:focus {
-    border-color: #74ebd5;
-  }
-  
-  .botones {
+}
+
+.incorrecta {
+    background-color: #FF4C4C;
+    color: white;
+    border: 2px solid #7b7a7a;
+}
+
+.incorrecta:hover {
+    background-color: #FF1A1A;
+}
+
+.correcta {
+    background-color: #4CAF50;
+    color: white;
+    border: 2px solid #7b7a7a;
+}
+
+.correcta:hover {
+    background-color: #388E3C;
+}
+
+.boton-siguiente {
+    padding: 15px 30px;
+    background-color: #e46973;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.1s ease, background 0.2s ease;
+}
+
+.boton-siguiente:hover {
+    background-color: #E63946;
+    transform: scale(1.05);
+}
+
+.boton-siguiente:focus {
+    outline: none;
+}
+
+
+.caja-inicio {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.caja-inicio h2 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+} */
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background: linear-gradient(to right, #74ebd5, #acb6e5); /* Fondo con gradiente */
+    color: #333; /* Color de texto más oscuro para contraste */
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.banner {
+    background-color: rgba(230, 57, 70, 0.9); /* Fondo semi-transparente para el banner */
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px 0px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-bottom: 3px solid #fff; /* Agregar una línea en la parte inferior para separar */
+}
+
+.puntos {
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 12px;
+}
+
+.perfil {
+    width: 50px;
+    height: 50px;
+    background-color: #ddd;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #fff;
+}
+
+.perfil img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.texto-banner {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding-right: 6%;
+}
+
+.contenedor-juego {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 90%;
+    max-width: 400px;
+    padding: 10px;
+   /*  background: rgba(255, 255, 255, 0.8); */ /* Fondo semi-transparente para el contenedor */
+    border-radius: 15px;
+    /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); */
+}
+
+.caja-pregunta {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.caja-respuestas {
+    background: transparent;
+    width: 100%;
+    text-align: center;
+}
+
+.pregunta {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.opcion {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.1s ease, background 0.2s ease;
+}
+
+.opcion:hover {
+    background: #E63946;
+    color: white;
+    transform: scale(1.05);
+}
+
+.opcion:focus {
+    outline: none;
+}
+
+.incorrecta {
+    background-color: #FF4C4C;
+    color: white;
+    border: 2px solid #7b7a7a;
+}
+
+.incorrecta:hover {
+    background-color: #FF1A1A;
+}
+
+.correcta {
+    background-color: #4CAF50;
+    color: white;
+    border: 2px solid #7b7a7a;
+}
+
+.correcta:hover {
+    background-color: #388E3C;
+}
+
+.boton-siguiente {
+    padding: 15px 30px;
+    background-color: #e46973;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.1s ease, background 0.2s ease;
+}
+
+.boton-siguiente:hover {
+    background-color: #E63946;
+    transform: scale(1.05);
+}
+
+.boton-siguiente:focus {
+    outline: none;
+}
+
+.caja-inicio {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    width: 100%; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.caja-inicio h2 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.caja-notFound{
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    /* width: 100%; */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.boton-iniciar {
+    padding: 20px 40px;
+    background: linear-gradient(to right, #74ebd5, #acb6e5); 
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, background 0.3s ease;
+    text-transform: uppercase;
+}
+
+.boton-iniciar:hover {
+    background: linear-gradient(to right, #acb6e5, #74ebd5); 
+    transform: scale(1.1); 
+}
+
+.boton-iniciar:focus {
+    outline: none;
+} 
+
+
+
+/* .pantalla-bienvenida {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: linear-gradient(to right, #74ebd5, #acb6e5);
+    color: white;
+    height: 100vh;
+  } */
+  .ranking {
+  /*   width: 100%;
+    max-width: 600px; */
+    margin: 0 auto;
+    
+   /*  border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
+}
+
+.ranking h2 {
+    font-size: 24px;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* .ranking ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ranking li {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    background-color: #f8f8f8;
+    margin: 10px 0;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.ranking li:nth-child(odd) {
+    background-color: #fafafa;
+}
+
+.ranking li:hover {
+    background-color: #e63946;
+    color: white;
+    transform: scale(1.02);
+}
+
+.ranking li .nombre {
+    font-weight: bold;
+    color: #333;
+}
+
+.ranking li .puntos {
+    font-weight: bold;
+    color: #4CAF50;
+} */
+
+/* .boton-iniciar-juego {
+    padding: 20px 40px;
+    background-color: #74ebd5;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 30px;
+}
+
+.boton-iniciar-juego:hover {
+    background-color: #4CAF50;
+}
+
+.boton-iniciar-juego:active {
+    background-color: #388E3C;
+    transform: scale(0.95);
+    transition: background-color 0.1s ease, transform 0.1s ease;
+  }
+ */
+
+
+
+
+
+.ranking table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .ranking th, .ranking td {
+    padding: 10px 15px;
+    text-align: left;
+  }
+  
+  .ranking thead {
+    background-color: #f8f8f8;
+  }
+  
+  .ranking th {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .ranking tbody tr {
+    background-color: #fff;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .ranking tbody tr:nth-child(odd) {
+    background-color: #fafafa;
+  }
+  
+  .ranking tbody tr:hover {
+    background-color: #e63946;
+    color: white;
+    transform: scale(1.02);
+  }
+  
+  .ranking tbody tr td { /* Estilo para la columna de nombre */
+    font-weight: bold;
+    color: inherit;
+  }
+  
+  
+  
+  .ranking tbody tr:hover td:nth-child(3) {
+    color: white;
+  }
+  
+  /* Estilo para la primera celda (Ranki) */
+  .ranking tbody tr td:first-child {
+    font-weight: bold;
+  }
+  
+
+  .ranking tbody tr.fila-moviendose {
+    transition: transform 0.5s ease-in-out; 
+  }
+
+  .ranking tbody tr.recien-agregado {
+    background-color: #e63946 !important; /* Un color celeste suave para destacar */
+    color: white !important;
+    transition: background-color 1s ease-in-out; /* Transición suave para el cambio de color */
+    /* Otros estilos que desees aplicar a la fila recién agregada */
+    /* Por ejemplo: */
+    /* border-left: 5px solid #00bcd4; */
+    /* font-weight: bold; */
+    /* color: #2196f3; */
+  }
+
+
+  .particle {
+    width: 10px;
+    height: 10px;
+    background-color: yellow; /* Color por defecto, se sobrescribe en JS */
+    border-radius: 50%;
+    position: absolute;
+    opacity: 1;
+    z-index: 10;
+  }
+
+  /* pruebas */
+ /*  .input-nombre input[type="text"] {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: sans-serif;
+    margin-bottom: 10px;
+    width: 250px;
+  }
+  
+  .input-nombre input[type="text"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 7px rgba(0, 123, 255, 0.5);
+    outline: none;
+  }
+  
+  .boton-iniciar-juego {
+    background-color: #ffc107; 
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .boton-iniciar-juego:hover {
+    background-color: #e0a800;
+  }
+  .boton-iniciar-juego:active {
+    transform: scale(0.95); 
+    box-shadow: 1px 1px 3px #aaa; 
+  } */
+
+  .container-btn-input {
+    display: flex; /* Alinea los elementos en la misma línea */
     margin-top: 20px;
   }
   
-  button {
-    padding: 10px 20px;
+  .container-btn-input input[type="text"] {
+    text-transform: uppercase;
+    color: #007bff;
+    border: 1px solid #ccc;
+    padding: 12px;
+    border-radius: 5px 0 0 5px; 
+    font-family: sans-serif;
+    flex-grow: 1; 
+    border-right: none; 
+    font-size: 16px;
+  }
+  
+  .container-btn-input input[type="text"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+  }
+  
+  .container-btn-input .boton-iniciar-juego {
+    background-color: #007bff;
+    color: white;
     border: none;
-    border-radius: 8px;
-    background-color: #74c0fc;
-    color: white;
+    padding: 12px 25px;
+    border-radius: 0 5px 5px 0; /* Bordes redondeados solo a la derecha */
     cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s;
+    font-size: 16px;
   }
   
-  button:hover {
-    background-color: #4dabf7;
+  .container-btn-input .boton-iniciar-juego:hover {
+    background-color: #0056b3;
+  }
+  .container-btn-input .boton-iniciar-juego:active
+  {
+    transform: scale(0.95); 
+    box-shadow: 1px 1px 3px #aaa; 
   }
 
-  
-  .container {
-    background-color: white;
-    padding: 40px 50px;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    max-width: 500px;
-    width: 90%;
-}
+  .error-message {
+    display: block; /* Para que ocupe una línea y no se mezcle con el input */
+    color: red;
+    font-size: 0.8em;
+    margin-top: 5px;
+    text-align: left;
+  }
+  .error-message.oculto {
+    display: none;
+  }
 
-h1 {
-    font-size: 2rem;
-    color: #ff6b6b;
-    margin-bottom: 10px;
-    animation: bounce 1s infinite alternate;
-}
-
-h2 {
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-}
-
-p {
-    font-size: 1.1rem;
-    color: #555;
-    margin-bottom: 30px;
-}
-
-a {
-    display: inline-block;
-    padding: 12px 24px;
-    background-color: #74c0fc;
-    color: white;
-    text-decoration: none;
-    border-radius: 10px;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
-
-a:hover {
-    background-color: #4dabf7;
-}
-
-@keyframes bounce {
-    from {
-        transform: translateY(0);
-    }
-
-    to {
-        transform: translateY(-10px);
-    }
-}
-
-#datos-container {
-  background-color: #ffffff;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
-}
-
-#datos-container h2 {
-  margin-top: 0;
-  font-size: 1.3rem;
-  color: #007bff;
-}
-
-#lista-datos {
-  list-style: none;
-  padding-left: 1rem;
-}
-
-#lista-datos li {
-  padding: 0.3rem 0;
-  border-bottom: 1px solid #eee;
-}
+  form#iniciarJuego{
+    height: 60px;
+  }

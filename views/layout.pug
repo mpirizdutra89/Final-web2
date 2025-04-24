@@ -1,19 +1,22 @@
 doctype html
-html(lang='es')
+html(lang="es")
   head
-    meta(charset='UTF-8')
-    meta(name='viewport' content='width=device-width,initial-scale=1')
-    title=titulo
-   
-    // El href debe empezar con / porque estamos usando rutas absolutas en vez de usar css/.... usar /css/....  para  cuando usemos app.use('/usuarios', usersRouter)
-
-    link(rel='stylesheet' href='/css/style.css')
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/css/style.css")
     link(rel='icon' href='data:,')
-    
+    title=titulo
   body
-    main.container
+    .banner
+      .puntos Puntos:
+          span#puntaje
+      .texto-banner PON A PRUEBA TU CONOCIMIENTO
+      .perfil
+        img(src="https://via.placeholder.com/150", alt="Foto de Perfil")
+    .contenedor-juego
       block content
 
-    script(src="/js/script.js")   
-     
-    
+
+    script(src="/js/script.js")
+
+      

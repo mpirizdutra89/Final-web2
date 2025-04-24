@@ -1,0 +1,31 @@
+extends layout.pug
+block content
+    .caja-inicio
+        .ranking
+            h2 Ranking Actual
+            ul
+              each puntaje,i in ranking
+                    li #{i+1}_ #{puntaje.nombre} - #{puntaje.puntos} puntos
+               
+        button.boton-iniciar-juego Iniciar Juego
+
+
+
+extends layout.pug
+block content
+    .caja-inicio
+        .ranking
+            h2 Ranking Actual
+            table
+                thead
+                    tr
+                        th Ranki
+                        th Nombre
+                        th Puntos
+                tbody
+                    each jugador, index in ranking
+                        tr
+                            td #{index + 1}
+                            td #{jugador.nombre}
+                            td #{jugador.puntos}
+        button.boton-iniciar-juego Iniciar Juego

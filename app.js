@@ -5,10 +5,10 @@ const PORT = 3000
 const { notFound, errorHandler } = require('./middlewares/errorHandler');
 
 const inicioRouter = require('./routes/inicio')
-
+const preguntaRouter = require('./routes/preguntas')
 // Public : archivos estáticos accesibles desde el navegador
 app.use(express.static(path.join(__dirname, 'public')))
-
+/* app.use(express.urlencoded({ extended: true })); */
 app.use(express.json());//para que funcione console.log con console.log(req.body); si no da undefined
 
 
@@ -20,6 +20,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 /* app.use('/usuarios', acaRouterNuevos) Rutas mas espesificas van arriba de las generales para evitar problemas */
 
+app.use('/preguntas', preguntaRouter)
 app.use('/', inicioRouter)
 //
 
