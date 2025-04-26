@@ -1,5 +1,6 @@
 // Middleware para manejar rutas no existentes (404)
 const notFound = (req, res, next) => {
+    console.log(req.originalUrl)
     res.status(404).render('404', { url: req.originalUrl });
 };
 

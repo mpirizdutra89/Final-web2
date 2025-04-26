@@ -4,8 +4,8 @@ const app = express()
 const PORT = 3000
 const { notFound, errorHandler } = require('./middlewares/errorHandler');
 
-const inicioRouter = require('./routes/inicio')
-const preguntaRouter = require('./routes/preguntas')
+const inicio = require('./routes/inicio')
+const iniciarJuego = require('./routes/iniciarJuego')
 // Public : archivos estáticos accesibles desde el navegador
 app.use(express.static(path.join(__dirname, 'public')))
 /* app.use(express.urlencoded({ extended: true })); */
@@ -19,10 +19,12 @@ app.set('views', path.join(__dirname, 'views'));
 
 
 /* app.use('/usuarios', acaRouterNuevos) Rutas mas espesificas van arriba de las generales para evitar problemas */
+app.use('/iniciar-juego', iniciarJuego)
 
-app.use('/preguntas', preguntaRouter)
-app.use('/', inicioRouter)
-//
+app.use('/', inicio)
+
+//servir archivos
+app.use('/funciones', express.static(path.join(__dirname, 'funciones')));
 
 // Middleware 404 Maneja ruta que no exiten por eso va abajo
 app.use(notFound);

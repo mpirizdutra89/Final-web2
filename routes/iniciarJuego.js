@@ -1,12 +1,12 @@
 const express = require('express')
 const router = express.Router();
-const { preguntas, paises } = require('../controllers/preguntaController');
+const { nuevoJugador } = require('../controllers/preguntaController');
 
 
 
-router.post('/paises', paises)
-router.post('/', preguntas)
 
+//router.post('/obtener-preguntas', obtenerPreguntasJuego)// ruta /iniciar-juego/ aca no hay nada
+router.get('/', nuevoJugador)
 //aca puede aver otroas que sean de tipo raiz o estaticas que no nesesite un tratamiento  como usuarios
 
 module.exports = router

@@ -1,5 +1,5 @@
 
-
+//leer el ranki del json
 exports.inicio = (req, res) => {
     let data = [
         { nombre: "Juan", puntos: 250 },
@@ -9,6 +9,7 @@ exports.inicio = (req, res) => {
         { nombre: "Pedro", puntos: 220 }
     ];
     //console.log(data)
+    console.log(req.originalUrl)
     res.render('inicio', {
         ranking: data
     });
