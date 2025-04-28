@@ -1,8 +1,8 @@
-import { json } from "express"
+/* import { json } from "express" */
 
 /* Variables */
 const itemJugador = 'InicioJuego'
-const pathInicio = './'
+const pathInicio = '/'
 
 
 export const pathInicio_juego = '/iniciar-juego'

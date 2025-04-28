@@ -105,18 +105,19 @@ async function iniciarJuego() {
         //hay que verificar el estado
         const estadoJuego = JSON.parse(getLocalJugador())
         if (estadoJuego) {
-            if (!estadoJuego.inicio) {
+            if (estadoJuego.inicio) {
 
                 const preguntas = await obtenerPreguntas();
 
-                /*  console.log(preguntas.data) */
-                siguientePregunta(preguntas.data, estadoJuego)
+                console.log(preguntas.data)
+                siguientePregunta(preguntas, estadoJuego)
 
-                loaderspiner(false)
+
 
             }
         }
     }
+    loaderspiner(false)
 
 
 }
@@ -147,9 +148,13 @@ function loaderspiner(activo) {
 function siguientePregunta(preguntas, estadoJuego) {
     if (preguntas.ok) {
         if (preguntas.data.length > 0) {
-
+            const data = preguntas.data[0]
+            mostrarPregunta(data, 0) //para prueba rapida el cero serial los index del array
 
 
         }
     }
 }
+
+
+/* Nota, cada vez que se actualiza vuelve a cargar las preguntas la idea es que no */
