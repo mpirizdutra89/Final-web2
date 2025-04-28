@@ -644,3 +644,141 @@ body {
   form#iniciarJuego{
     height: 60px;
   }
+
+
+  /* Carga  efectos*/
+
+  /* loader basico */
+  .loader {
+    border: 8px solid #f3f3f3; /* Gris claro sólido */
+    border-top: 8px solid #3498db; /* Azul */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: girar 2s linear infinite;
+  }
+  
+  @keyframes girar {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* loader dots */
+  .loader-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .loader-dots span {
+    display: block;
+    width: 10px;
+    height: 10px;
+    background-color: #3498db;
+    border-radius: 50%;
+    margin: 0 5px;
+    animation: pulsar 1.5s infinite alternate;
+  }
+  
+  .loader-dots span:nth-child(2) {
+    animation-delay: 0.5s;
+  }
+  
+  .loader-dots span:nth-child(3) {
+    animation-delay: 1s;
+  }
+  
+  @keyframes pulsar {
+    0% { opacity: 0.3; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1.2); }
+  }
+
+  /* cubo gitatorio */
+  /* .sk-folding-cube {
+    margin: 20px auto;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    transform: rotateZ(45deg);
+  }
+  
+  .sk-folding-cube .sk-cube {
+    float: left;
+    width: 50%;
+    height: 50%;
+    position: relative;
+    transform: scale(1.1);
+  }
+  
+  .sk-folding-cube .sk-cube:before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(230, 57, 70, 0.9);
+    animation: sk-foldCubeAngle 2.4s infinite linear both;
+    transform-origin: 100% 100%;
+  }
+  
+  .sk-folding-cube .sk-cube2 { transform: scale(1.1) rotateZ(90deg); }
+  .sk-folding-cube .sk-cube3 { transform: scale(1.1) rotateZ(180deg); }
+  .sk-folding-cube .sk-cube4 { transform: scale(1.1) rotateZ(270deg); }
+  .sk-folding-cube .sk-cube2:before { animation-delay: 0.3s; }
+  .sk-folding-cube .sk-cube3:before { animation-delay: 0.6s; }
+  .sk-folding-cube .sk-cube4:before { animation-delay: 0.9s; }
+  
+  @keyframes sk-foldCubeAngle {
+    0%, 10%   { transform: perspective(140px) rotateX(-180deg); opacity: 0; }
+    25%, 75%  { transform: perspective(140px) rotateX(0deg);     opacity: 1; }
+    90%, 100% { transform: perspective(140px) rotateY(180deg); opacity: 0; }
+  } */
+
+  /* Contenedor para centrar el cubo */
+.sk-folding-cube-container {
+    position: fixed; /* Para que flote */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centrarlo */
+    z-index: 1000; /* Asegurarse de que esté por encima de otros elementos si es necesario */
+  }
+  
+  .sk-folding-cube {
+    margin: 0 auto; /* Eliminar el margen automático que podría interferir con el centrado */
+    width: 80px; /* Hacerlo más grande */
+    height: 80px; /* Hacerlo más grande */
+    position: relative;
+    transform: rotateZ(45deg);
+  }
+  
+  .sk-folding-cube .sk-cube {
+    float: left;
+    width: 50%;
+    height: 50%;
+    position: relative;
+    transform: scale(1.5); /* Hacer los cubos internos más grandes */
+  }
+  
+  .sk-folding-cube .sk-cube:before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(230, 57, 70, 0.9); /* Puedes cambiar el color */
+    animation: sk-foldCubeAngle 2.4s infinite linear both;
+    transform-origin: 100% 100%;
+  }
+  
+  .sk-folding-cube .sk-cube2 { transform: scale(1.5) rotateZ(90deg); }
+  .sk-folding-cube .sk-cube3 { transform: scale(1.5) rotateZ(180deg); }
+  .sk-folding-cube .sk-cube4 { transform: scale(1.5) rotateZ(270deg); }
+  .sk-folding-cube .sk-cube2:before { animation-delay: 0.3s; }
+  .sk-folding-cube .sk-cube3:before { animation-delay: 0.6s; }
+  .sk-folding-cube .sk-cube4:before { animation-delay: 0.9s; }
+  
+  @keyframes sk-foldCubeAngle {
+    0%, 10%   { transform: perspective(140px) rotateX(-180deg); opacity: 0; }
+    25%, 75%  { transform: perspective(140px) rotateX(0deg);     opacity: 1; }
+    90%, 100% { transform: perspective(140px) rotateY(180deg); opacity: 0; }
+  }
+
+  

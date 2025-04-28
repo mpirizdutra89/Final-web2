@@ -3,12 +3,12 @@ exports.nuevoJugador = (req, res) => {
 
     res.render('preguntas', { titulo: 'Incicio del juego' });
 }
-/* 
-const { obtenerPaises } = require('./paisesController');
- */
+
+/* const { obtenerPaises } = require('./paisesController'); */
 
 
-/* 
+
+
 
 function generarPregunta(paises) {
     const tipoPregunta = Math.floor(Math.random() * 3);
@@ -117,12 +117,12 @@ function generarListaDePreguntas(paises, cantidad = 10) {
 
 
 
-exports.obtenerPreguntasJuego = async (req, res) => {
+/* exports.obtenerPreguntasJuego = async (req, res) => {
     const respuestaPaises = await obtenerPaises(req, {
         json: (data) => data,
         status: (code) => ({ json: (error) => ({ ok: false, error: error.error }) })
     });
-
+    console.log(respuestaPaises)
     if (respuestaPaises.ok) {
         const paises = respuestaPaises.data;
         const preguntasConOpciones = generarListaDePreguntas(paises);
@@ -130,7 +130,34 @@ exports.obtenerPreguntasJuego = async (req, res) => {
     } else {
         res.status(500).json(respuestaPaises);
     }
+}; */
+
+exports.obtenerPreguntasJuego = async (req, res) => {
+
+
+    try {
+        const restcountries = await fetch('https://restcountries.com/v3.1/all?fields=name,capital,flags,borders');
+        const data = await restcountries.json();
+        //  setTimeout(() => {
+        if (data.length > 0) {
+            const preguntasConOpciones = generarListaDePreguntas(data);
+            // console.log(preguntasConOpciones)
+            res.json({ ok: true, data: preguntasConOpciones });
+        } else {
+            res.status(500).json({ ok: false, data: `falla funcion obtnerPregunraJuego() Error HTTP: ${restcountries.status}` });
+        }
+
+
+        // }, 5000);
+
+
+    } catch (error) {
+        console.error('Error al obtener datos de países:', error);
+        res.status(500).json({ ok: false, error: 'Error al obtener los datos de los países desde la API.' });
+    }
+
+
+
 };
 
 
- */
