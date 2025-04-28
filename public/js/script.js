@@ -91,7 +91,7 @@ function mostrarPregunta(preguntaObj, index) {
     preguntaActual.innerHTML = preguntaObj.pregunta
     preguntaObj.opciones.forEach(item => {
         opciones.innerHTML += `<button class='opcion' data-id='${index}'>${item}</button>`
-    });
+    });//
 
 }
 
