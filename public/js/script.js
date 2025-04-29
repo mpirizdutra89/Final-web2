@@ -1,16 +1,27 @@
-import { redireccionar, pathInicio_juego, setLocalJugador, getLocalJugador, nuevoJugador, obtenerPreguntas, pathRanki_juego, removerJugador, cantPreguntas, removerPaises, limpiar, setLocalPaises, getLocalPaises, visible, creaEscribirNotificacion } from '../../funciones/funcionesComunes.js';
+import { redireccionar, pathInicio_juego, setLocalJugador, getLocalJugador, nuevoJugador, obtenerPreguntas, pathRanki_juego, registrarTiempoRespuest, iniciarTemporizadorPregunta, removerJugador, cantPreguntas, removerPaises, limpiar, setLocalPaises, getLocalPaises, visible, creaEscribirNotificacion } from '../../funciones/funcionesComunes.js';
 
 const contenedor = document.querySelector("#contenedor_juego")
 contenedor.addEventListener('click', function (event) {
     if (event.target.tagName === 'BUTTON') {
         if (event.target.id == 'next') {
             siguiente()
+            registrarTiempoRespuest()
         }
 
         if (event.target.classList.contains('opcion')) {
             const elemento = event.target;
+            let estadoJuego = JSON.parse(getLocalJugador())
+            if (evaluarRepuesta(elemento)) {
+                //sumos puntos etc
 
-            evaluarRepuesta(elemento)
+                estadoJuego.puntajeActual = parseInt(listaPregunta[data_index].puntos) + parseInt(estadoJuego.puntaje)
+                estadoJuego.respuestasCorrectas++
+                setLocalJugador(estadoJuego)
+            } else {
+                //incorrectas
+                estadoJuego.respuestasIncorrectas++
+                setLocalJugador(estadoJuego)
+            }
 
             //alert(`data-id: ${elemento.dataset.id} opcion: ${elemento.textContent}`);
         }
@@ -136,7 +147,11 @@ function mostrarPregunta(preguntaObj, index = 0) {
         opciones.innerHTML += `<button class='opcion' data-id='${i}' data-index='${index}' data-name='${item}'>${item}</button>`
     })
 
-
+    iniciarTemporizadorPregunta()
+    //inicio el reloj
+    //REspodo lo de tiene
+    //le da siguiente , entra de nuevo aca y se inicia el ciclo
+    //la idea sume los milisegundos
 
 }
 
@@ -253,25 +268,28 @@ function siguiente() {
         }
     }
 }
-
+/*  */
 //Nota FAlta controlar que una vez se evalue la repsueta sea como sea, ya no se puede tocar esos botones y activar el boton sigueinte para seguir
+//falta sumar puntajes y
 function evaluarRepuesta(opcion) {
+    const evaluar = false;
     // const elemento = document.querySelector('[data-index="0"]');
     const data_id = opcion.dataset.id // 1,2,3,4 son las opciones para identificarlas
     const data_index = opcion.dataset.index// index en la lista de  paises
     const data_name = opcion.dataset.name// name de cada opcion
-    alert(`data-id:${data_id} , data-index:${data_index} , data-name:${data_name}`)
+    /* alert(`data-id:${data_id} , data-index:${data_index} , data-name:${data_name}`) */
     const listaPregunta = JSON.parse(getLocalPaises())
-    console.log("A:", listaPregunta)
+
+    //console.log("A:", listaPregunta)
     if (listaPregunta) {
         //if (data_index >= 0 && data_index < listaPregunta.length) {
         /* const correcto = listaPregunta.find(lista => lista.respuestaCorrecta === data_name); */
         if (listaPregunta[data_index].respuestaCorrecta === data_name) {
-            alert("correcta")
-            //si es correcto efecto
+
+            evaluar = true;
             opcion.classList.add('correcta')
         } else {
-            alert("no")
+
             opcion.classList.add('incorrecta')
             const buscar = listaPregunta[data_index].respuestaCorrecta
             const encontrado = document.querySelector(`[data-name='${buscar}']`)
@@ -281,6 +299,7 @@ function evaluarRepuesta(opcion) {
         }
         // }
     }
+    return false;
 }
 
 
