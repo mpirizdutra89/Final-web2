@@ -285,6 +285,7 @@ body {
     background: #E63946;
     color: white;
     transform: scale(1.05);
+  
 }
 button.opcion:active {
   transform: scale(0.95); 
@@ -755,6 +756,7 @@ button.opcion:active {
     left: 50%;
     transform: translate(-50%, -50%); /* Centrarlo */
     z-index: 1000; /* Asegurarse de que esté por encima de otros elementos si es necesario */
+    display: none;
   }
   
   .sk-folding-cube {

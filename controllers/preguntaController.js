@@ -1,10 +1,17 @@
 exports.nuevoJugador = (req, res) => {
 
 
-    res.render('preguntas', { titulo: 'Incicio del juego' });
+    res.render('preguntas', { titulo: 'Incicio del juego' })
 }
 
-/* const { obtenerPaises } = require('./paisesController'); */
+exports.ranki = (req, res) => {
+    //mandar un json con los datos que necito mostrar mas el ranki
+    //leer los datos del juego que deberian estar en un json
+    res.render('ranki', { titulo: 'Ranki' })
+}
+
+
+
 
 
 
@@ -89,7 +96,7 @@ function generarOpciones(pregunta, paises) {
 }
 
 
-function generarListaDePreguntas(paises, cantidad = 10) {
+/* function generarListaDePreguntas(paises, cantidad = 10) {
     const listaDePreguntas = [];
     for (let i = 0; i < cantidad; i++) {
         const preguntaConOpciones = generarPregunta(paises);
@@ -99,7 +106,7 @@ function generarListaDePreguntas(paises, cantidad = 10) {
         }
     }
     return listaDePreguntas;
-}
+} */
 
 
 
@@ -111,28 +118,16 @@ function generarListaDePreguntas(paises, cantidad = 10) {
             listaDePreguntas.push(pregunta);
         }
     }
+    console.log(`generarListaDePreguntas(paises,10) cantida:${cantidad} | ${listaDePreguntas.length} `)
     return listaDePreguntas;
 }
 
 
 
 
-/* exports.obtenerPreguntasJuego = async (req, res) => {
-    const respuestaPaises = await obtenerPaises(req, {
-        json: (data) => data,
-        status: (code) => ({ json: (error) => ({ ok: false, error: error.error }) })
-    });
-    console.log(respuestaPaises)
-    if (respuestaPaises.ok) {
-        const paises = respuestaPaises.data;
-        const preguntasConOpciones = generarListaDePreguntas(paises);
-        res.json({ ok: true, preguntas: preguntasConOpciones });
-    } else {
-        res.status(500).json(respuestaPaises);
-    }
-}; */
 
-exports.obtenerPreguntasJuego = async (req, res) => {
+
+/* exports.obtenerPreguntasJuego = async (req, res) => {
 
 
     try {
@@ -141,7 +136,8 @@ exports.obtenerPreguntasJuego = async (req, res) => {
         //  setTimeout(() => {
         if (data.length > 0) {
             const preguntasConOpciones = generarListaDePreguntas(data);
-            // console.log(preguntasConOpciones)
+            console.log("Preguntas", preguntasConOpciones)
+
             res.json({ ok: true, data: preguntasConOpciones });
         } else {
             res.status(500).json({ ok: false, data: `falla funcion obtnerPregunraJuego() Error HTTP: ${restcountries.status}` });
@@ -158,6 +154,57 @@ exports.obtenerPreguntasJuego = async (req, res) => {
 
 
 
+} */
+
+
+exports.obtenerPreguntasJuego = async (req, res) => {
+    try {
+        const restcountries = await fetch('https://restcountries.com/v3.1/all?fields=name,capital,flags,borders');
+        if (!restcountries.ok) {
+            console.error(`Error al obtener datos de países: ${restcountries.status} - ${restcountries.statusText}`);
+            const preguntasLocal = dataLocal();
+            console.log("Sirviendo preguntas locales debido a error de API.");
+            return res.json({ ok: true, data: preguntasLocal });
+        }
+        const data = await restcountries.json();
+        if (data.length > 0) {
+            const preguntasConOpciones = generarListaDePreguntas(data);
+            console.log("Preguntas obtenidas de la API:", preguntasConOpciones);
+            res.json({ ok: true, data: preguntasConOpciones });
+        } else {
+            console.error("La API devolvió un array vacío.");
+            const preguntasLocal = dataLocal();
+            console.log("Sirviendo preguntas locales debido a array vacío de la API.");
+            return res.json({ ok: true, data: preguntasLocal });
+        }
+    } catch (error) {
+        /*  console.error('Error al obtener datos de países:', error); */
+        const preguntasLocal = dataLocal();
+        console.log("Sirviendo preguntas locales debido a error de conexión.");
+        return res.json({ ok: true, data: preguntasLocal });
+    }
 };
+
+
+
+//si se cae la pagina de la api
+function dataLocal() {
+    const key = Math.floor(Math.random() * 3);
+    let preguntas = []
+    switch (key) {
+        case 0:
+            preguntas = [{ "tipo": 0, "pregunta": "¿Cuál es el país de la capital: Kinshasa?", "respuestaCorrecta": "DR Congo", "puntos": 3, "opciones": ["United States Minor Outlying Islands", "Pakistan", "South Georgia", "DR Congo"] }, { "tipo": 2, "pregunta": "¿Cuántos países limítrofes tiene Laos?", "respuestaCorrecta": "5", "puntos": 3, "opciones": ["3", "1", "5", "2"] }, { "tipo": 1, "pregunta": "¿A qué país pertenece la siguiente bandera?", "banderaURL": "https://flagcdn.com/w320/io.png", "respuestaCorrecta": "British Indian Ocean Territory", "puntos": 5, "opciones": ["British Indian Ocean Territory", "Luxembourg", "DR Congo", "British Virgin Islands"] }, { "tipo": 2, "pregunta": "¿Cuántos países limítrofes tiene Réunion?", "respuestaCorrecta": "0", "puntos": 3, "opciones": ["5", "0", "1", "2"] }, { "tipo": 0, "pregunta": "¿Cuál es el país de la capital: Bamako?", "respuestaCorrecta": "Mali", "puntos": 3, "opciones": ["Mali", "Martinique", "Jordan", "Belarus"] }, { "tipo": 1, "pregunta": "¿A qué país pertenece la siguiente bandera?", "banderaURL": "https://flagcdn.com/w320/ru.png", "respuestaCorrecta": "Russia", "puntos": 5, "opciones": ["Namibia", "Turks and Caicos Islands", "Bangladesh", "Russia"] }, { "tipo": 0, "pregunta": "¿Cuál es el país de la capital: Luxembourg?", "respuestaCorrecta": "Luxembourg", "puntos": 3, "opciones": ["Luxembourg", "Peru", "Latvia", "Burundi"] }, { "tipo": 0, "pregunta": "¿Cuál es el país de la capital: Tegucigalpa?", "respuestaCorrecta": "Honduras", "puntos": 3, "opciones": ["Honduras", "Uruguay", "Austria", "Dominica"] }, { "tipo": 1, "pregunta": "¿A qué país pertenece la siguiente bandera?", "banderaURL": "https://flagcdn.com/w320/cd.png", "respuestaCorrecta": "DR Congo", "puntos": 5, "opciones": ["Cape Verde", "Cambodia", "Togo", "DR Congo"] }, { "tipo": 2, "pregunta": "¿Cuántos países limítrofes tiene Kyrgyzstan?", "respuestaCorrecta": "4", "puntos": 3, "opciones": ["5", "1", "2", "4"] }]
+            break;
+        case 1:
+            preguntas = [{ "tipo": 0, "pregunta": "¿Cuál es el país de la capital: Kinshasa?", "respuestaCorrecta": "DR Congo", "puntos": 3, "opciones": ["United States Minor Outlying Islands", "Pakistan", "South Georgia", "DR Congo"] }, { "tipo": 2, "pregunta": "¿Cuántos países limítrofes tiene Laos?", "respuestaCorrecta": "5", "puntos": 3, "opciones": ["3", "1", "5", "2"] }, { "tipo": 1, "pregunta": "¿A qué país pertenece la siguiente bandera?", "banderaURL": "https://flagcdn.com/w320/io.png", "respuestaCorrecta": "British Indian Ocean Territory", "puntos": 5, "opciones": ["British Indian Ocean Territory", "Luxembourg", "DR Congo", "British Virgin Islands"] }, { "tipo": 2, "pregunta": "¿Cuántos países limítrofes tiene Réunion?", "respuestaCorrecta": "0", "puntos": 3, "opciones": ["5", "0", "1", "2"] }, { "tipo": 0, "pregunta": "¿Cuál es el país de la capital: Bamako?", "respuestaCorrecta": "Mali", "puntos": 3, "opciones": ["Mali", "Martinique", "Jordan", "Belarus"] }, { "tipo": 1, "pregunta": "¿A qué país pertenece la siguiente bandera?", "banderaURL": "https://flagcdn.com/w320/ru.png", "respuestaCorrecta": "Russia", "puntos": 5, "opciones": ["Namibia", "Turks and Caicos Islands", "Bangladesh", "Russia"] }, { "tipo": 0, "pregunta": "¿Cuál es el país de la capital: Luxembourg?", "respuestaCorrecta": "Luxembourg", "puntos": 3, "opciones": ["Luxembourg", "Peru", "Latvia", "Burundi"] }, { "tipo": 0, "pregunta": "¿Cuál es el país de la capital: Tegucigalpa?", "respuestaCorrecta": "Honduras", "puntos": 3, "opciones": ["Honduras", "Uruguay", "Austria", "Dominica"] }, { "tipo": 1, "pregunta": "¿A qué país pertenece la siguiente bandera?", "banderaURL": "https://flagcdn.com/w320/cd.png", "respuestaCorrecta": "DR Congo", "puntos": 5, "opciones": ["Cape Verde", "Cambodia", "Togo", "DR Congo"] }, { "tipo": 2, "pregunta": "¿Cuántos países limítrofes tiene Kyrgyzstan?", "respuestaCorrecta": "4", "puntos": 3, "opciones": ["5", "1", "2", "4"] }]
+            break;
+        case 2:
+            preguntas = [{ "tipo": 0, "pregunta": "¿Cuál es el país de la capital: Kinshasa?", "respuestaCorrecta": "DR Congo", "puntos": 3, "opciones": ["United States Minor Outlying Islands", "Pakistan", "South Georgia", "DR Congo"] }, { "tipo": 2, "pregunta": "¿Cuántos países limítrofes tiene Laos?", "respuestaCorrecta": "5", "puntos": 3, "opciones": ["3", "1", "5", "2"] }, { "tipo": 1, "pregunta": "¿A qué país pertenece la siguiente bandera?", "banderaURL": "https://flagcdn.com/w320/io.png", "respuestaCorrecta": "British Indian Ocean Territory", "puntos": 5, "opciones": ["British Indian Ocean Territory", "Luxembourg", "DR Congo", "British Virgin Islands"] }, { "tipo": 2, "pregunta": "¿Cuántos países limítrofes tiene Réunion?", "respuestaCorrecta": "0", "puntos": 3, "opciones": ["5", "0", "1", "2"] }, { "tipo": 0, "pregunta": "¿Cuál es el país de la capital: Bamako?", "respuestaCorrecta": "Mali", "puntos": 3, "opciones": ["Mali", "Martinique", "Jordan", "Belarus"] }, { "tipo": 1, "pregunta": "¿A qué país pertenece la siguiente bandera?", "banderaURL": "https://flagcdn.com/w320/ru.png", "respuestaCorrecta": "Russia", "puntos": 5, "opciones": ["Namibia", "Turks and Caicos Islands", "Bangladesh", "Russia"] }, { "tipo": 0, "pregunta": "¿Cuál es el país de la capital: Luxembourg?", "respuestaCorrecta": "Luxembourg", "puntos": 3, "opciones": ["Luxembourg", "Peru", "Latvia", "Burundi"] }, { "tipo": 0, "pregunta": "¿Cuál es el país de la capital: Tegucigalpa?", "respuestaCorrecta": "Honduras", "puntos": 3, "opciones": ["Honduras", "Uruguay", "Austria", "Dominica"] }, { "tipo": 1, "pregunta": "¿A qué país pertenece la siguiente bandera?", "banderaURL": "https://flagcdn.com/w320/cd.png", "respuestaCorrecta": "DR Congo", "puntos": 5, "opciones": ["Cape Verde", "Cambodia", "Togo", "DR Congo"] }, { "tipo": 2, "pregunta": "¿Cuántos países limítrofes tiene Kyrgyzstan?", "respuestaCorrecta": "4", "puntos": 3, "opciones": ["5", "1", "2", "4"] }]
+            break;
+
+    }
+
+    return preguntas
+}
 
 

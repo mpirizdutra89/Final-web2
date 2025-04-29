@@ -1,19 +1,52 @@
+import { redireccionar, pathInicio_juego, setLocalJugador, getLocalJugador, nuevoJugador, obtenerPreguntas, pathRanki_juego, removerJugador, cantPreguntas, removerPaises, limpiar, setLocalPaises, getLocalPaises, visible, creaEscribirNotificacion } from '../../funciones/funcionesComunes.js';
 
-import { redireccionar, pathInicio_juego, setLocalJugador, getLocalJugador, nuevoJugador, obtenerPreguntas, removerJugador, removerPaises, setLocalPaises, getLocalPaises } from '../../funciones/funcionesComunes.js';
+const contenedor = document.querySelector("#contenedor_juego")
+contenedor.addEventListener('click', function (event) {
+    if (event.target.tagName === 'BUTTON') {
+        if (event.target.id == 'next') {
+            siguiente()
+        }
+
+        if (event.target.classList.contains('opcion')) {
+            const elemento = event.target;
+
+            evaluarRepuesta(elemento)
+
+            //alert(`data-id: ${elemento.dataset.id} opcion: ${elemento.textContent}`);
+        }
+    }
+});
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    /* Vista de inicio carga */
 
-    /*  removerJugador()
-     removerPaises() */
-    formularioInicio_view()
-
-
-
-});//Load documnet las llamada cuando este cargado el dom , la funcione afuera
-
+formularioInicio_view()
 iniciarJuego()
+
+
+
+
+
+//para borrar , para pruebas depues sacar
+const btnPruebas = document.querySelector("#btnPruebas")
+btnPruebas.addEventListener("click", function () {
+    reiniciarTodo()
+})
+
+
+
+
+
+
+
+/* Vista de inicio carga */
+
+/* Control de preguntas */
+
+
+
+//});//Load documnet las llamada cuando este cargado el dom , la funcione afuera
+
+
 /* Funciones */
 
 function formularioInicio_view() {
@@ -22,7 +55,15 @@ function formularioInicio_view() {
     const formulario = document.querySelector('form#iniciarJuego');
     //permite verificar si el formulario esta
     if (formulario) {
-        if (getLocalJugador()) { redireccionar(pathInicio_juego) }//lo ejecuta solo en el inicio y si ya hay un judaor en la memoria del navegador
+        const estadoActual = getLocalJugador()
+        //sale
+        if (estadoActual) {
+            !estadoActual.finalizo ? redireccionar(pathInicio_juego) : redireccionar(pathRanki_juego)//lo ejecuta solo en el inicio y si ya hay un judaor en la memoria del navegador
+
+        }
+
+
+
         const inputNombre = document.querySelector('#nombreJugador');
         const errorNombreSpan = document.getElementById('errorNombre');
 
@@ -59,11 +100,7 @@ function formularioInicio_view() {
         });
     }
     return;
-    /*    
-   
-       if (preguntas_view) {
-           inicioDelJuego()
-       } */
+
 
 }
 
@@ -77,61 +114,88 @@ function formularioInicio_view() {
       'Ivory Coast',
       'South Georgia',
       'Marshall Islands'
-    ]
+    ]// miBoton.dataset.id;
   }, */
+
+
+
 function mostrarPregunta(preguntaObj, index = 0) {
 
-    const preguntaActual = document.querySelector("#preguntaActual")
-    const preguntaImg = document.querySelector("#preguntaImg")
+    const cajaPregunta = document.querySelector("#preguntas_view")
     const opciones = document.querySelector("#opciones")
-    // miBoton.dataset.id;
-    const tipo = parseInt(preguntaObj.tipo)
+    limpiar(cajaPregunta, opciones)
 
-    if (tipo != 1) {
-        preguntaActual.innerHTML = preguntaObj.pregunta
+    if (preguntaObj.tipo !== 1) {
+        cajaPregunta.innerHTML = `<h4 class='pregunta'>${preguntaObj.pregunta}</h4>`
     } else {
-        preguntaImg.src = preguntaObj.banderaURL
+        cajaPregunta.innerHTML = `<img src='${preguntaObj.banderaURL}' alt='${preguntaObj.respuestaCorrecta}' />`
     }
 
 
-    preguntaObj.opciones.forEach(item => {
-        opciones.innerHTML += `<button class='opcion' data-id='${index}'>${item}</button>`
-    });//
+    preguntaObj.opciones.forEach((item, i) => {
+        opciones.innerHTML += `<button class='opcion' data-id='${i}' data-index='${index}' data-name='${item}'>${item}</button>`
+    })
+
+
 
 }
 
 
 
 async function iniciarJuego() {
-    loaderspiner(true)
+    // 
     const contenedor = document.querySelector('#preguntas_view')
-
+    let index = 0
     if (contenedor) {
-        //hay que verificar el estado
+
+        loaderspiner(true)
+
         const estadoJuego = JSON.parse(getLocalJugador())
         const listaPregunta = JSON.parse(getLocalPaises())
 
-        if (estadoJuego && estadoJuego?.inicio) {
+        if (estadoJuego) {
 
-            if (!listaPregunta) {// entra cuando no esta en local storage
+
+            if (!listaPregunta) {
                 const preguntaPaises = await obtenerPreguntas();
                 if (preguntaPaises.ok) {
+                    console.log(preguntaPaises.data)
+                    loaderspiner(false)
                     setLocalPaises(preguntaPaises.data)
+                    mostrarPregunta(preguntaPaises.data[estadoJuego.preguntaIndex], estadoJuego.preguntaIndex)
+                    estadoJuego.preguntaIndex++;
+                    setLocalJugador(estadoJuego)
+
+                } else {
+                    //fallo la peticion
+                    creaEscribirNotificacion("No hay preguntas disponibles, se callo el servicio")
+                    reiniciarTodo()
+
+                    //
                 }
+            } else {
+                console.log(listaPregunta, `Pregunta: ${estadoJuego.preguntaIndex}`)
+                // setTimeout(() => { }, 100);
+                loaderspiner(false)
+                if (estadoJuego.preguntaIndex < cantPreguntas) {
+                    /* alert(estadoJuego.preguntaIndex) */
+                    mostrarPregunta(listaPregunta[estadoJuego.preguntaIndex], estadoJuego.preguntaIndex)
+                } else {
+                    //ir al ranki
+                    // redireccionar()
+                }
+
             }
-            console.log("Datos directos de obtnerPreguntas()", listaPregunta)
-            //cada vez que se actualiza muestra la ultima pregunta
-            const index = parseInt(estadoJuego.preguntaIndex)
-            mostrarPregunta(listaPregunta[4])
+
+
 
 
         } else {
-            //el estado del juego no esta o esta en false, de cualquier manera no se puede jugar volve al inicio
-            //redireccionar juego
-            redireccionar()// por defecto vulve al inicio
+
+            reiniciarTodo()
         }
     }
-    loaderspiner(false)
+
 
 
 }
@@ -159,20 +223,66 @@ function loaderspiner(activo) {
 
 }
 
-function siguientePregunta(index = 0) {
+
+
+function reiniciarTodo() {
+    removerJugador()
+    removerPaises()
+    redireccionar()
+}
+
+function siguiente() {
     const listaPregunta = JSON.parse(getLocalPaises())
-    /* const estadoJuego = JSON.parse(getLocalJugador()) */
-    if (listaPregunta && listaPregunta?.ok) {
-        if (listaPregunta.data.length > 0) {
-            mostrarPregunta(listaPregunta.data[estadoJuego?.preguntaIndex])
+    let estadoJuego = JSON.parse(getLocalJugador())
+    let index = estadoJuego.preguntaIndex
+    if (listaPregunta) {
+
+        if (listaPregunta.length > 0) {
+            if (index < cantPreguntas) {
+                /*  alert(` total:${listaPregunta.length} index:${index} cant:${cantPreguntas}`) */
+                estadoJuego.preguntaIndex++;
+                mostrarPregunta(listaPregunta[estadoJuego.preguntaIndex], estadoJuego.preguntaIndex)
+
+
+                setLocalJugador(estadoJuego)
+            }
+
+
+
+
         }
     }
 }
 
-function ControlPreguntas() {
-    const next = document.querySelector("button#next")
-
+//Nota FAlta controlar que una vez se evalue la repsueta sea como sea, ya no se puede tocar esos botones y activar el boton sigueinte para seguir
+function evaluarRepuesta(opcion) {
+    // const elemento = document.querySelector('[data-index="0"]');
+    const data_id = opcion.dataset.id // 1,2,3,4 son las opciones para identificarlas
+    const data_index = opcion.dataset.index// index en la lista de  paises
+    const data_name = opcion.dataset.name// name de cada opcion
+    alert(`data-id:${data_id} , data-index:${data_index} , data-name:${data_name}`)
+    const listaPregunta = JSON.parse(getLocalPaises())
+    console.log("A:", listaPregunta)
+    if (listaPregunta) {
+        //if (data_index >= 0 && data_index < listaPregunta.length) {
+        /* const correcto = listaPregunta.find(lista => lista.respuestaCorrecta === data_name); */
+        if (listaPregunta[data_index].respuestaCorrecta === data_name) {
+            alert("correcta")
+            //si es correcto efecto
+            opcion.classList.add('correcta')
+        } else {
+            alert("no")
+            opcion.classList.add('incorrecta')
+            const buscar = listaPregunta[data_index].respuestaCorrecta
+            const encontrado = document.querySelector(`[data-name='${buscar}']`)
+            if (encontrado) {
+                encontrado.classList.add('correcta')
+            }
+        }
+        // }
+    }
 }
+
 
 
 /* Nota, cada vez que se actualiza vuelve a cargar las preguntas la idea es que no */

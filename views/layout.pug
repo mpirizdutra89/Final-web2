@@ -11,18 +11,16 @@ html(lang="es")
       .puntos Puntos:
           span#puntaje
       .texto-banner PON A PRUEBA TU CONOCIMIENTO
-      .perfil
+      .perfil(id='btnPruebas')
         //img(src="", alt="Foto de Perfil")
     div(class='sk-folding-cube-container')
-            .sk-folding-cube
-                  div(class='sk-cube1 sk-cube')
-                  div(class='sk-cube2 sk-cube')
-                  div(class='sk-cube3 sk-cube')
-                  div(class='sk-cube4 sk-cube')
-    .contenedor-juego
-      block content
+        .sk-folding-cube
+            div(class='sk-cube1 sk-cube')
+            div(class='sk-cube2 sk-cube')
+            div(class='sk-cube3 sk-cube')
+            div(class='sk-cube4 sk-cube')
+    .contenedor-juego(id="contenedor_juego")
+        block content
 
    
-    script(type='module' src="/js/script.js")
-
-      
+    script(type='module' src="/js/script.js")      
