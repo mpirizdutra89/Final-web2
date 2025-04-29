@@ -1,17 +1,13 @@
 
-import { redireccionar, pathInicio_juego, setLocalJugador, getLocalJugador, nuevoJugador, obtenerPreguntas, removerJugador } from '../../funciones/funcionesComunes.js';
+import { redireccionar, pathInicio_juego, setLocalJugador, getLocalJugador, nuevoJugador, obtenerPreguntas, removerJugador, removerPaises, setLocalPaises, getLocalPaises } from '../../funciones/funcionesComunes.js';
 
 
 document.addEventListener('DOMContentLoaded', () => {
     /* Vista de inicio carga */
-    /* removerJugador() para prbar */
-    // console.log(`Jugador: ${JSON.parse(getLocalJugador())?.fecha}`)//? es para evitar errores si no esxite la propiedad
+
+    /*  removerJugador()
+     removerPaises() */
     formularioInicio_view()
-
-
-
-
-    /* Vista de pregunta*/
 
 
 
@@ -83,12 +79,21 @@ function formularioInicio_view() {
       'Marshall Islands'
     ]
   }, */
-function mostrarPregunta(preguntaObj, index) {
+function mostrarPregunta(preguntaObj, index = 0) {
 
     const preguntaActual = document.querySelector("#preguntaActual")
+    const preguntaImg = document.querySelector("#preguntaImg")
     const opciones = document.querySelector("#opciones")
     // miBoton.dataset.id;
-    preguntaActual.innerHTML = preguntaObj.pregunta
+    const tipo = parseInt(preguntaObj.tipo)
+
+    if (tipo != 1) {
+        preguntaActual.innerHTML = preguntaObj.pregunta
+    } else {
+        preguntaImg.src = preguntaObj.banderaURL
+    }
+
+
     preguntaObj.opciones.forEach(item => {
         opciones.innerHTML += `<button class='opcion' data-id='${index}'>${item}</button>`
     });//
@@ -99,22 +104,31 @@ function mostrarPregunta(preguntaObj, index) {
 
 async function iniciarJuego() {
     loaderspiner(true)
-    const preguntas = document.querySelector('#preguntas_view')
+    const contenedor = document.querySelector('#preguntas_view')
 
-    if (preguntas) {
+    if (contenedor) {
         //hay que verificar el estado
         const estadoJuego = JSON.parse(getLocalJugador())
-        if (estadoJuego) {
-            if (estadoJuego.inicio) {
+        const listaPregunta = JSON.parse(getLocalPaises())
 
-                const preguntas = await obtenerPreguntas();
+        if (estadoJuego && estadoJuego?.inicio) {
 
-                console.log(preguntas.data)
-                siguientePregunta(preguntas, estadoJuego)
-
-
-
+            if (!listaPregunta) {// entra cuando no esta en local storage
+                const preguntaPaises = await obtenerPreguntas();
+                if (preguntaPaises.ok) {
+                    setLocalPaises(preguntaPaises.data)
+                }
             }
+            console.log("Datos directos de obtnerPreguntas()", listaPregunta)
+            //cada vez que se actualiza muestra la ultima pregunta
+            const index = parseInt(estadoJuego.preguntaIndex)
+            mostrarPregunta(listaPregunta[4])
+
+
+        } else {
+            //el estado del juego no esta o esta en false, de cualquier manera no se puede jugar volve al inicio
+            //redireccionar juego
+            redireccionar()// por defecto vulve al inicio
         }
     }
     loaderspiner(false)
@@ -145,15 +159,19 @@ function loaderspiner(activo) {
 
 }
 
-function siguientePregunta(preguntas, estadoJuego) {
-    if (preguntas.ok) {
-        if (preguntas.data.length > 0) {
-            const data = preguntas.data[0]
-            mostrarPregunta(data, 0) //para prueba rapida el cero serial los index del array
-
-
+function siguientePregunta(index = 0) {
+    const listaPregunta = JSON.parse(getLocalPaises())
+    /* const estadoJuego = JSON.parse(getLocalJugador()) */
+    if (listaPregunta && listaPregunta?.ok) {
+        if (listaPregunta.data.length > 0) {
+            mostrarPregunta(listaPregunta.data[estadoJuego?.preguntaIndex])
         }
     }
+}
+
+function ControlPreguntas() {
+    const next = document.querySelector("button#next")
+
 }
 
 

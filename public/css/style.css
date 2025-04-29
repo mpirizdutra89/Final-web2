@@ -253,6 +253,13 @@ body {
     text-align: center;
 }
 
+.img-pregunta {
+  display: block; 
+  width: 60%;    
+  height: auto;
+  margin: 0 auto;   
+}
+
 .pregunta {
     font-size: 20px;
     font-weight: bold;
@@ -278,6 +285,10 @@ body {
     background: #E63946;
     color: white;
     transform: scale(1.05);
+}
+button.opcion:active {
+  transform: scale(0.95); 
+  box-shadow: 1px 1px 3px #aaa; 
 }
 
 .opcion:focus {
@@ -320,6 +331,10 @@ body {
 .boton-siguiente:hover {
     background-color: #E63946;
     transform: scale(1.05);
+}
+.boton-siguiente:active {
+  transform: scale(0.95); 
+  box-shadow: 1px 1px 3px #aaa; 
 }
 
 .boton-siguiente:focus {

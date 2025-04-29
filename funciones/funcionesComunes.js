@@ -2,6 +2,7 @@
 
 /* Variables */
 const itemJugador = 'InicioJuego'
+const itemPreguntaPaises = 'preguntaPaises'
 const pathInicio = '/'
 
 
@@ -62,15 +63,26 @@ export const leerNotificar = () => {
 
 
 export const removerJugador = () => {
-    localStorage.removeItem(itemJugador);
+    localStorage.removeItem(itemJugador)
+
 }
+export const removerPaises = () => {
+    localStorage.removeItem(itemPreguntaPaises)
+}
+
 
 export const setLocalJugador = (objeto) => {
     localStorage.setItem(itemJugador, JSON.stringify(objeto));
 }
+export const setLocalPaises = (objeto) => {
+    localStorage.setItem(itemPreguntaPaises, JSON.stringify(objeto));
+}
 
 export const getLocalJugador = () => {
     return localStorage.getItem(itemJugador)
+}
+export const getLocalPaises = () => {
+    return localStorage.getItem(itemPreguntaPaises)
 }
 
 export const fechaHoy = () => {
