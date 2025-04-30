@@ -137,18 +137,20 @@ export const limpiar = (preguntas, opciones) => {
 
 }
 
-export const iniciarTemporizadorPregunta = () => {
+export const iniciarTemporizador = () => {
     startTime = performance.now();
 }
 
 
-export const registrarTiempoRespuest = () => {
+export const registrarTiempo = () => {
     if (startTime) {
         const endTime = performance.now();
         const tiempoRespuesta = endTime - startTime;
         startTime = null; // Reinicia para la siguiente pregunta
         const estadoJuego = JSON.parse(getLocalJugador())
         estadoJuego.tiempo_rpomedio += tiempoRespuesta
+        setLocalJugador(estadoJuego)
+        console.log(`registrarTiempo() : ${estadoJuego}`)
     }
 }
 

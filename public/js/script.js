@@ -1,11 +1,11 @@
-import { redireccionar, pathInicio_juego, setLocalJugador, getLocalJugador, nuevoJugador, obtenerPreguntas, pathRanki_juego, registrarTiempoRespuest, iniciarTemporizadorPregunta, removerJugador, cantPreguntas, removerPaises, limpiar, setLocalPaises, getLocalPaises, visible, creaEscribirNotificacion } from '../../funciones/funcionesComunes.js';
+import { redireccionar, pathInicio_juego, setLocalJugador, getLocalJugador, nuevoJugador, obtenerPreguntas, pathRanki_juego, registrarTiempo, iniciarTemporizador, removerJugador, cantPreguntas, removerPaises, limpiar, setLocalPaises, getLocalPaises, visible, creaEscribirNotificacion } from '../../funciones/funcionesComunes.js';
 
 const contenedor = document.querySelector("#contenedor_juego")
 contenedor.addEventListener('click', function (event) {
     if (event.target.tagName === 'BUTTON') {
         if (event.target.id == 'next') {
             siguiente()
-            registrarTiempoRespuest()
+
         }
 
         if (event.target.classList.contains('opcion')) {
@@ -22,8 +22,9 @@ contenedor.addEventListener('click', function (event) {
                 estadoJuego.respuestasIncorrectas++
                 setLocalJugador(estadoJuego)
             }
+            registrarTiempo()//detiene el reloj depues de responder
 
-            //alert(`data-id: ${elemento.dataset.id} opcion: ${elemento.textContent}`);
+
         }
     }
 });
@@ -147,7 +148,7 @@ function mostrarPregunta(preguntaObj, index = 0) {
         opciones.innerHTML += `<button class='opcion' data-id='${i}' data-index='${index}' data-name='${item}'>${item}</button>`
     })
 
-    iniciarTemporizadorPregunta()
+    iniciarTemporizador()
     //inicio el reloj
     //REspodo lo de tiene
     //le da siguiente , entra de nuevo aca y se inicia el ciclo
@@ -254,11 +255,9 @@ function siguiente() {
 
         if (listaPregunta.length > 0) {
             if (index < cantPreguntas) {
-                /*  alert(` total:${listaPregunta.length} index:${index} cant:${cantPreguntas}`) */
+
                 estadoJuego.preguntaIndex++;
                 mostrarPregunta(listaPregunta[estadoJuego.preguntaIndex], estadoJuego.preguntaIndex)
-
-
                 setLocalJugador(estadoJuego)
             }
 
@@ -273,14 +272,14 @@ function siguiente() {
 //falta sumar puntajes y
 function evaluarRepuesta(opcion) {
     const evaluar = false;
-    // const elemento = document.querySelector('[data-index="0"]');
+
     const data_id = opcion.dataset.id // 1,2,3,4 son las opciones para identificarlas
     const data_index = opcion.dataset.index// index en la lista de  paises
     const data_name = opcion.dataset.name// name de cada opcion
-    /* alert(`data-id:${data_id} , data-index:${data_index} , data-name:${data_name}`) */
+
     const listaPregunta = JSON.parse(getLocalPaises())
 
-    //console.log("A:", listaPregunta)
+
     if (listaPregunta) {
         //if (data_index >= 0 && data_index < listaPregunta.length) {
         /* const correcto = listaPregunta.find(lista => lista.respuestaCorrecta === data_name); */
@@ -304,4 +303,3 @@ function evaluarRepuesta(opcion) {
 
 
 
-/* Nota, cada vez que se actualiza vuelve a cargar las preguntas la idea es que no */
