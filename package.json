@@ -6,7 +6,12 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "notas-agregar": "node .notas_dev/notas.js --agregar",
+    "notas-leer": "node .notas_dev/notas.js --leer",
+    "notas-borrar": "node .notas_dev/notas.js --borrar",
+    "notas-comandos": "node .notas_dev/notas.js --comandos",
+    "notas-ayuda": "node .notas_dev/notas.js --ayuda"
   },
   "dependencies": {
     "express": "^4.18.2",

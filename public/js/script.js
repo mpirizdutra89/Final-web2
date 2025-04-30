@@ -1,9 +1,10 @@
-import { redireccionar, pathInicio_juego, setLocalJugador, getLocalJugador, nuevoJugador, obtenerPreguntas, pathRanki_juego, registrarTiempo, iniciarTemporizador, removerJugador, cantPreguntas, removerPaises, limpiar, setLocalPaises, getLocalPaises, visible, creaEscribirNotificacion } from '../../funciones/funcionesComunes.js';
+import { redireccionar, pathInicio_juego, setLocalJugador, habilitarSiguiente, habilitarOpciones, getLocalJugador, nuevoJugador, obtenerPreguntas, pathRanki_juego, registrarTiempo, iniciarTemporizador, removerJugador, cantPreguntas, removerPaises, limpiar, setLocalPaises, getLocalPaises, visible, creaEscribirNotificacion } from '../../funciones/funcionesComunes.js';
 
 const contenedor = document.querySelector("#contenedor_juego")
+
 contenedor.addEventListener('click', function (event) {
     if (event.target.tagName === 'BUTTON') {
-        if (event.target.id == 'next') {
+        if (event.target.id == 'next' && habilitarSiguiente) {
             siguiente()
 
         }
@@ -23,7 +24,7 @@ contenedor.addEventListener('click', function (event) {
                 setLocalJugador(estadoJuego)
             }
             registrarTiempo()//detiene el reloj depues de responder
-
+            habilitarSiguiente = true
 
         }
     }
@@ -147,6 +148,8 @@ function mostrarPregunta(preguntaObj, index = 0) {
     preguntaObj.opciones.forEach((item, i) => {
         opciones.innerHTML += `<button class='opcion' data-id='${i}' data-index='${index}' data-name='${item}'>${item}</button>`
     })
+
+    habilitarSiguiente = false
 
     iniciarTemporizador()
     //inicio el reloj

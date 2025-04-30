@@ -9,8 +9,13 @@ export const cantPreguntas = 10
 
 export const pathInicio_juego = '/iniciar-juego'
 export const pathRanki_juego = '/iniciar-juego/ranki'
+export let habilitarSiguiente = false;
+export let habilitarOpciones = false;
 let startTime = 0
+
 /* Funciones */
+
+
 
 export const inicioDelJuego = () => {
     const jugador = getLocalJugador()

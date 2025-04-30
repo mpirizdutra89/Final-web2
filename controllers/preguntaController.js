@@ -196,7 +196,98 @@ function dataLocal() {
             preguntas = [{ "tipo": 0, "pregunta": "¿Cuál es el país de la capital: Kinshasa?", "respuestaCorrecta": "DR Congo", "puntos": 3, "opciones": ["United States Minor Outlying Islands", "Pakistan", "South Georgia", "DR Congo"] }, { "tipo": 2, "pregunta": "¿Cuántos países limítrofes tiene Laos?", "respuestaCorrecta": "5", "puntos": 3, "opciones": ["3", "1", "5", "2"] }, { "tipo": 1, "pregunta": "¿A qué país pertenece la siguiente bandera?", "banderaURL": "https://flagcdn.com/w320/io.png", "respuestaCorrecta": "British Indian Ocean Territory", "puntos": 5, "opciones": ["British Indian Ocean Territory", "Luxembourg", "DR Congo", "British Virgin Islands"] }, { "tipo": 2, "pregunta": "¿Cuántos países limítrofes tiene Réunion?", "respuestaCorrecta": "0", "puntos": 3, "opciones": ["5", "0", "1", "2"] }, { "tipo": 0, "pregunta": "¿Cuál es el país de la capital: Bamako?", "respuestaCorrecta": "Mali", "puntos": 3, "opciones": ["Mali", "Martinique", "Jordan", "Belarus"] }, { "tipo": 1, "pregunta": "¿A qué país pertenece la siguiente bandera?", "banderaURL": "https://flagcdn.com/w320/ru.png", "respuestaCorrecta": "Russia", "puntos": 5, "opciones": ["Namibia", "Turks and Caicos Islands", "Bangladesh", "Russia"] }, { "tipo": 0, "pregunta": "¿Cuál es el país de la capital: Luxembourg?", "respuestaCorrecta": "Luxembourg", "puntos": 3, "opciones": ["Luxembourg", "Peru", "Latvia", "Burundi"] }, { "tipo": 0, "pregunta": "¿Cuál es el país de la capital: Tegucigalpa?", "respuestaCorrecta": "Honduras", "puntos": 3, "opciones": ["Honduras", "Uruguay", "Austria", "Dominica"] }, { "tipo": 1, "pregunta": "¿A qué país pertenece la siguiente bandera?", "banderaURL": "https://flagcdn.com/w320/cd.png", "respuestaCorrecta": "DR Congo", "puntos": 5, "opciones": ["Cape Verde", "Cambodia", "Togo", "DR Congo"] }, { "tipo": 2, "pregunta": "¿Cuántos países limítrofes tiene Kyrgyzstan?", "respuestaCorrecta": "4", "puntos": 3, "opciones": ["5", "1", "2", "4"] }]
             break;
         case 1:
-            preguntas = [{ "tipo": 0, "pregunta": "¿Cuál es el país de la capital: Kinshasa?", "respuestaCorrecta": "DR Congo", "puntos": 3, "opciones": ["United States Minor Outlying Islands", "Pakistan", "South Georgia", "DR Congo"] }, { "tipo": 2, "pregunta": "¿Cuántos países limítrofes tiene Laos?", "respuestaCorrecta": "5", "puntos": 3, "opciones": ["3", "1", "5", "2"] }, { "tipo": 1, "pregunta": "¿A qué país pertenece la siguiente bandera?", "banderaURL": "https://flagcdn.com/w320/io.png", "respuestaCorrecta": "British Indian Ocean Territory", "puntos": 5, "opciones": ["British Indian Ocean Territory", "Luxembourg", "DR Congo", "British Virgin Islands"] }, { "tipo": 2, "pregunta": "¿Cuántos países limítrofes tiene Réunion?", "respuestaCorrecta": "0", "puntos": 3, "opciones": ["5", "0", "1", "2"] }, { "tipo": 0, "pregunta": "¿Cuál es el país de la capital: Bamako?", "respuestaCorrecta": "Mali", "puntos": 3, "opciones": ["Mali", "Martinique", "Jordan", "Belarus"] }, { "tipo": 1, "pregunta": "¿A qué país pertenece la siguiente bandera?", "banderaURL": "https://flagcdn.com/w320/ru.png", "respuestaCorrecta": "Russia", "puntos": 5, "opciones": ["Namibia", "Turks and Caicos Islands", "Bangladesh", "Russia"] }, { "tipo": 0, "pregunta": "¿Cuál es el país de la capital: Luxembourg?", "respuestaCorrecta": "Luxembourg", "puntos": 3, "opciones": ["Luxembourg", "Peru", "Latvia", "Burundi"] }, { "tipo": 0, "pregunta": "¿Cuál es el país de la capital: Tegucigalpa?", "respuestaCorrecta": "Honduras", "puntos": 3, "opciones": ["Honduras", "Uruguay", "Austria", "Dominica"] }, { "tipo": 1, "pregunta": "¿A qué país pertenece la siguiente bandera?", "banderaURL": "https://flagcdn.com/w320/cd.png", "respuestaCorrecta": "DR Congo", "puntos": 5, "opciones": ["Cape Verde", "Cambodia", "Togo", "DR Congo"] }, { "tipo": 2, "pregunta": "¿Cuántos países limítrofes tiene Kyrgyzstan?", "respuestaCorrecta": "4", "puntos": 3, "opciones": ["5", "1", "2", "4"] }]
+            preguntas = [
+                {
+                    tipo: 2,
+                    pregunta: '¿Cuántos países limítrofes tiene Mayotte?',
+                    respuestaCorrecta: '0',
+                    puntos: 3,
+                    opciones: ['3', '5', '4', '0']
+                },
+                {
+                    tipo: 1,
+                    pregunta: '¿A qué país pertenece la siguiente bandera?',
+                    banderaURL: 'https://flagcdn.com/w320/ph.png',
+                    respuestaCorrecta: 'Philippines',
+                    puntos: 5,
+                    opciones: [
+                        'British Indian Ocean Territory',
+                        'Philippines',
+                        'Dominican Republic',
+                        'Republic of the Congo'
+                    ]
+                },
+                {
+                    tipo: 2,
+                    pregunta: '¿Cuántos países limítrofes tiene Canada?',
+                    respuestaCorrecta: '1',
+                    puntos: 3,
+                    opciones: ['6', '0', '1', '7']
+                },
+                {
+                    tipo: 1,
+                    pregunta: '¿A qué país pertenece la siguiente bandera?',
+                    banderaURL: 'https://flagcdn.com/w320/mc.png',
+                    respuestaCorrecta: 'Monaco',
+                    puntos: 5,
+                    opciones: ['Curaçao', 'Namibia', 'Guyana', 'Monaco']
+                },
+                {
+                    tipo: 2,
+                    pregunta: '¿Cuántos países limítrofes tiene Croatia?',
+                    respuestaCorrecta: '5',
+                    puntos: 3,
+                    opciones: ['2', '0', '4', '5']
+                },
+                {
+                    tipo: 0,
+                    pregunta: '¿Cuál es el país de la capital: Plymouth?',
+                    respuestaCorrecta: 'Montserrat',
+                    puntos: 3,
+                    opciones: [
+                        'Turks and Caicos Islands',
+                        'Angola',
+                        'Montserrat',
+                        'British Indian Ocean Territory'
+                    ]
+                },
+                {
+                    tipo: 1,
+                    pregunta: '¿A qué país pertenece la siguiente bandera?',
+                    banderaURL: 'https://flagcdn.com/w320/bi.png',
+                    respuestaCorrecta: 'Burundi',
+                    puntos: 5,
+                    opciones: ['Lebanon', 'Mexico', 'Armenia', 'Burundi']
+                },
+                {
+                    tipo: 0,
+                    pregunta: '¿Cuál es el país de la capital: City of San Marino?',
+                    respuestaCorrecta: 'San Marino',
+                    puntos: 3,
+                    opciones: [
+                        'San Marino',
+                        'Eritrea',
+                        'Northern Mariana Islands',
+                        'Caribbean Netherlands'
+                    ]
+                },
+                {
+                    tipo: 1,
+                    pregunta: '¿A qué país pertenece la siguiente bandera?',
+                    banderaURL: 'https://flagcdn.com/w320/gd.png',
+                    respuestaCorrecta: 'Grenada',
+                    puntos: 5,
+                    opciones: ['Palestine', 'Montenegro', 'Namibia', 'Grenada']
+                },
+                {
+                    tipo: 1,
+                    pregunta: '¿A qué país pertenece la siguiente bandera?',
+                    banderaURL: 'https://flagcdn.com/w320/ph.png',
+                    respuestaCorrecta: 'Philippines',
+                    puntos: 5,
+                    opciones: ['Monaco', 'United States', 'Philippines', 'Bouvet Island']
+                }
+            ]
             break;
         case 2:
             preguntas = [{ "tipo": 0, "pregunta": "¿Cuál es el país de la capital: Kinshasa?", "respuestaCorrecta": "DR Congo", "puntos": 3, "opciones": ["United States Minor Outlying Islands", "Pakistan", "South Georgia", "DR Congo"] }, { "tipo": 2, "pregunta": "¿Cuántos países limítrofes tiene Laos?", "respuestaCorrecta": "5", "puntos": 3, "opciones": ["3", "1", "5", "2"] }, { "tipo": 1, "pregunta": "¿A qué país pertenece la siguiente bandera?", "banderaURL": "https://flagcdn.com/w320/io.png", "respuestaCorrecta": "British Indian Ocean Territory", "puntos": 5, "opciones": ["British Indian Ocean Territory", "Luxembourg", "DR Congo", "British Virgin Islands"] }, { "tipo": 2, "pregunta": "¿Cuántos países limítrofes tiene Réunion?", "respuestaCorrecta": "0", "puntos": 3, "opciones": ["5", "0", "1", "2"] }, { "tipo": 0, "pregunta": "¿Cuál es el país de la capital: Bamako?", "respuestaCorrecta": "Mali", "puntos": 3, "opciones": ["Mali", "Martinique", "Jordan", "Belarus"] }, { "tipo": 1, "pregunta": "¿A qué país pertenece la siguiente bandera?", "banderaURL": "https://flagcdn.com/w320/ru.png", "respuestaCorrecta": "Russia", "puntos": 5, "opciones": ["Namibia", "Turks and Caicos Islands", "Bangladesh", "Russia"] }, { "tipo": 0, "pregunta": "¿Cuál es el país de la capital: Luxembourg?", "respuestaCorrecta": "Luxembourg", "puntos": 3, "opciones": ["Luxembourg", "Peru", "Latvia", "Burundi"] }, { "tipo": 0, "pregunta": "¿Cuál es el país de la capital: Tegucigalpa?", "respuestaCorrecta": "Honduras", "puntos": 3, "opciones": ["Honduras", "Uruguay", "Austria", "Dominica"] }, { "tipo": 1, "pregunta": "¿A qué país pertenece la siguiente bandera?", "banderaURL": "https://flagcdn.com/w320/cd.png", "respuestaCorrecta": "DR Congo", "puntos": 5, "opciones": ["Cape Verde", "Cambodia", "Togo", "DR Congo"] }, { "tipo": 2, "pregunta": "¿Cuántos países limítrofes tiene Kyrgyzstan?", "respuestaCorrecta": "4", "puntos": 3, "opciones": ["5", "1", "2", "4"] }]
