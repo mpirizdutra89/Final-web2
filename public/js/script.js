@@ -1,9 +1,13 @@
-import { redireccionar, pathInicio_juego, setLocalJugador, habilitarSiguiente, habilitarOpciones, getLocalJugador, nuevoJugador, obtenerPreguntas, pathRanki_juego, registrarTiempo, iniciarTemporizador, removerJugador, cantPreguntas, removerPaises, limpiar, setLocalPaises, getLocalPaises, visible, creaEscribirNotificacion } from '../../funciones/funcionesComunes.js';
+import { redireccionar, pathInicio_juego, setLocalJugador, getLocalJugador, puntajeTiempoReal, HabilitarContenedorOpciones, nuevoJugador, obtenerPreguntas, pathRanki_juego, registrarTiempo, iniciarTemporizador, removerJugador, cantPreguntas, removerPaises, limpiar, setLocalPaises, getLocalPaises, visible, creaEscribirNotificacion } from '../../funciones/funcionesComunes.js';
 
 const contenedor = document.querySelector("#contenedor_juego")
-
+const contenedorOpciones = document.querySelector("#opciones")
+/* 
+let habilitarOpciones = false; */
+let habilitarSiguiente = false;
 contenedor.addEventListener('click', function (event) {
     if (event.target.tagName === 'BUTTON') {
+        // alert(habilitarSiguiente)
         if (event.target.id == 'next' && habilitarSiguiente) {
             siguiente()
 
@@ -11,20 +15,14 @@ contenedor.addEventListener('click', function (event) {
 
         if (event.target.classList.contains('opcion')) {
             const elemento = event.target;
-            let estadoJuego = JSON.parse(getLocalJugador())
-            if (evaluarRepuesta(elemento)) {
-                //sumos puntos etc
 
-                estadoJuego.puntajeActual = parseInt(listaPregunta[data_index].puntos) + parseInt(estadoJuego.puntaje)
-                estadoJuego.respuestasCorrectas++
-                setLocalJugador(estadoJuego)
-            } else {
-                //incorrectas
-                estadoJuego.respuestasIncorrectas++
-                setLocalJugador(estadoJuego)
-            }
+
+            evaluarRepuesta(elemento)
+
+            HabilitarContenedorOpciones(true, contenedorOpciones)
             registrarTiempo()//detiene el reloj depues de responder
             habilitarSiguiente = true
+
 
         }
     }
@@ -41,9 +39,12 @@ iniciarJuego()
 
 //para borrar , para pruebas depues sacar
 const btnPruebas = document.querySelector("#btnPruebas")
-btnPruebas.addEventListener("click", function () {
-    reiniciarTodo()
-})
+if (btnPruebas) {
+    btnPruebas.addEventListener("click", function () {
+        reiniciarTodo()
+    })
+}
+
 
 
 
@@ -147,11 +148,12 @@ function mostrarPregunta(preguntaObj, index = 0) {
 
     preguntaObj.opciones.forEach((item, i) => {
         opciones.innerHTML += `<button class='opcion' data-id='${i}' data-index='${index}' data-name='${item}'>${item}</button>`
-    })
+    });
 
-    habilitarSiguiente = false
+    habilitarSiguiente = false;
+    HabilitarContenedorOpciones(false, contenedorOpciones)
 
-    iniciarTemporizador()
+    iniciarTemporizador(document.querySelector("span#tiempo"))
     //inicio el reloj
     //REspodo lo de tiene
     //le da siguiente , entra de nuevo aca y se inicia el ciclo
@@ -169,10 +171,12 @@ async function iniciarJuego() {
 
         loaderspiner(true)
 
-        const estadoJuego = JSON.parse(getLocalJugador())
+        let estadoJuego = JSON.parse(getLocalJugador())
         const listaPregunta = JSON.parse(getLocalPaises())
 
         if (estadoJuego) {
+
+            puntajeTiempoReal(estadoJuego.puntajeActual, document.querySelector("span#puntaje"))
 
 
             if (!listaPregunta) {
@@ -193,7 +197,7 @@ async function iniciarJuego() {
                     //
                 }
             } else {
-                console.log(listaPregunta, `Pregunta: ${estadoJuego.preguntaIndex}`)
+                /* console.log(listaPregunta, `Pregunta: ${estadoJuego.preguntaIndex}`) */
                 // setTimeout(() => { }, 100);
                 loaderspiner(false)
                 if (estadoJuego.preguntaIndex < cantPreguntas) {
@@ -259,9 +263,9 @@ function siguiente() {
         if (listaPregunta.length > 0) {
             if (index < cantPreguntas) {
 
-                estadoJuego.preguntaIndex++;
+
                 mostrarPregunta(listaPregunta[estadoJuego.preguntaIndex], estadoJuego.preguntaIndex)
-                setLocalJugador(estadoJuego)
+
             }
 
 
@@ -271,25 +275,29 @@ function siguiente() {
     }
 }
 /*  */
-//Nota FAlta controlar que una vez se evalue la repsueta sea como sea, ya no se puede tocar esos botones y activar el boton sigueinte para seguir
-//falta sumar puntajes y
+//depues de evaluar si se actualiza la pagina vulve a preguntar y los puntos ya se sumaron ojo!!!!
 function evaluarRepuesta(opcion) {
-    const evaluar = false;
+
 
     const data_id = opcion.dataset.id // 1,2,3,4 son las opciones para identificarlas
     const data_index = opcion.dataset.index// index en la lista de  paises
     const data_name = opcion.dataset.name// name de cada opcion
 
     const listaPregunta = JSON.parse(getLocalPaises())
+    let estadoJuego = JSON.parse(getLocalJugador())
 
-
-    if (listaPregunta) {
+    if (listaPregunta && estadoJuego) {
         //if (data_index >= 0 && data_index < listaPregunta.length) {
         /* const correcto = listaPregunta.find(lista => lista.respuestaCorrecta === data_name); */
         if (listaPregunta[data_index].respuestaCorrecta === data_name) {
 
-            evaluar = true;
+
             opcion.classList.add('correcta')
+            //puntaje y cantidad de respuestas correctas
+            /*  alert(listaPregunta[data_index].puntos + " " + estadoJuego.puntajeActual) */
+            estadoJuego.puntajeActual = parseInt(listaPregunta[data_index].puntos) + parseInt(estadoJuego.puntajeActual)
+            estadoJuego.respuestasCorrectas++
+
         } else {
 
             opcion.classList.add('incorrecta')
@@ -298,10 +306,28 @@ function evaluarRepuesta(opcion) {
             if (encontrado) {
                 encontrado.classList.add('correcta')
             }
+            //suma las preguntas incorrectas
+            estadoJuego.respuestasIncorrectas++
+
         }
-        // }
+        estadoJuego.preguntaIndex++;
+        setLocalJugador(estadoJuego)
+        puntajeTiempoReal(estadoJuego.puntajeActual, document.querySelector("span#puntaje"))
+
+        leerObjeto(estadoJuego)
+        console.log(listaPregunta)
+
     }
-    return false;
+
+}
+
+
+const leerObjeto = (miObjeto) => {
+    const entradas = Object.entries(miObjeto);
+
+    entradas.forEach(([clave, valor]) => {
+        console.log(`Clave: ${clave}, Valor: ${valor}`);
+    });
 }
 
 

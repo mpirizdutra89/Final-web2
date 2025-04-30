@@ -5,12 +5,13 @@ const itemJugador = 'InicioJuego'
 const itemPreguntaPaises = 'preguntaPaises'
 
 const pathInicio = '/'
+
 export const cantPreguntas = 10
 
 export const pathInicio_juego = '/iniciar-juego'
 export const pathRanki_juego = '/iniciar-juego/ranki'
-export let habilitarSiguiente = false;
-export let habilitarOpciones = false;
+
+
 let startTime = 0
 
 /* Funciones */
@@ -107,7 +108,7 @@ export const nuevoJugador = (name) => {
         puntajeActual: 0,
         respuestasCorrectas: 0,
         respuestasIncorrectas: 0,
-        tiempo_rpomedio: 0 //aca se va sumando el tiempo y depues lo divido por 10
+        tiempo_promedio: 0 //aca se va sumando el tiempo y depues lo divido por 10
     }
 }
 
@@ -142,20 +143,119 @@ export const limpiar = (preguntas, opciones) => {
 
 }
 
-export const iniciarTemporizador = () => {
-    startTime = performance.now();
+
+
+export const HabilitarContenedorOpciones = (op, contenedor) => {
+    contenedor.classList.remove('contenedor-deshabilitado');
+    if (op) {
+        contenedor.classList.add('contenedor-deshabilitado');
+    }
+
 }
 
+export const puntajeTiempoReal = (puntos, elemento) => {
+    elemento.innerHTML = "0"
 
-export const registrarTiempo = () => {
+    elemento.innerHTML = puntos
+}
+
+const leerObjeto = (miObjeto) => {
+    const entradas = Object.entries(miObjeto);
+
+    entradas.forEach(([clave, valor]) => {
+        console.log(`Clave: ${clave}, Valor: ${valor}`);
+    });
+}
+
+/* export function iniciarReloj(elementoId) {
+    function actualizarReloj() {
+      const ahora = new Date();
+      const horas = ahora.getHours().toString().padStart(2, '0');
+      const minutos = ahora.getMinutes().toString().padStart(2, '0');
+      const segundos = ahora.getSeconds().toString().padStart(2, '0');
+      const horaActual = `<span class="math-inline">\{horas\}\:</span>{minutos}:${segundos}`;
+      const elementoReloj = document.getElementById(elementoId);
+      if (elementoReloj) {
+        elementoReloj.textContent = horaActual;
+      } else {
+        console.error(`Elemento con ID '${elementoId}' no encontrado para el reloj.`);
+      }
+    }
+  
+    actualizarReloj();
+    setInterval(actualizarReloj, 1000);
+  } */
+
+
+/* Temporizador */
+/* export const iniciarTemporizador = () => {
+    startTime = performance.now();
+} */
+
+
+/* export const registrarTiempo = () => {
     if (startTime) {
         const endTime = performance.now();
         const tiempoRespuesta = endTime - startTime;
         startTime = null; // Reinicia para la siguiente pregunta
-        const estadoJuego = JSON.parse(getLocalJugador())
-        estadoJuego.tiempo_rpomedio += tiempoRespuesta
-        setLocalJugador(estadoJuego)
-        console.log(`registrarTiempo() : ${estadoJuego}`)
-    }
-}
+        let estadoJuego = JSON.parse(getLocalJugador())
 
+        estadoJuego.tiempo_promedio += tiempoRespuesta
+        setLocalJugador(estadoJuego)
+
+    }
+} */
+
+//______________
+
+/* export let startTime = 0; */
+let intervaloTiempo; // Para almacenar el ID del intervalo
+
+// Inicia el temporizador guardando el tiempo de inicio
+export const iniciarTemporizador = (elementoTiempo) => {
+    startTime = performance.now();
+    // Opcional: Iniciar la visualización del tiempo transcurrido inmediatamente
+    iniciarVisualizacionTiempo(elementoTiempo);
+};
+
+// Detiene el temporizador y calcula el tiempo transcurrido Gaurdo los datos
+export const registrarTiempo = () => {
+    const endTime = performance.now();
+    const tiempoTranscurridoMs = endTime - startTime;
+    const tiempoTranscurrido = formatearTiempo(tiempoTranscurridoMs);
+
+    let estadoJuego = JSON.parse(getLocalJugador())
+
+    estadoJuego.tiempo_promedio += Math.floor((tiempoTranscurridoMs % (1000 * 60)) / 1000);
+    setLocalJugador(estadoJuego)
+
+    detenerVisualizacionTiempo();
+
+    // return tiempoTranscurridoMs;
+};
+
+// Formatea el tiempo en milisegundos a un formato legible (MM:SS o similar)
+const formatearTiempo = (ms) => {
+    const minutos = Math.floor(ms / (1000 * 60));
+    const segundos = Math.floor((ms % (1000 * 60)) / 1000);
+    const segundosStr = segundos.toString().padStart(2, '0');
+    return `${minutos}:${segundosStr}`;
+    // O puedes agregar milisegundos si necesitas más precisión:
+    // const milisegundos = Math.floor(ms % 1000).toString().padStart(3, '0');
+    // return `${minutos}:${segundosStr}:${milisegundos}`;
+};
+
+// Opcional: Función para visualizar el tiempo transcurrido en tiempo real (mientras corre) = "span#tiempo"
+const iniciarVisualizacionTiempo = (elementoTiempo) => {
+
+
+    intervaloTiempo = setInterval(() => {
+        const tiempoActualMs = performance.now() - startTime;
+        elementoTiempo.textContent = formatearTiempo(tiempoActualMs);
+    }, 100); // Actualiza cada 100 milisegundos para una sensación más fluida
+};
+
+// Opcional: Función para detener la visualización continua del tiempo
+const detenerVisualizacionTiempo = () => {
+    clearInterval(intervaloTiempo);
+};

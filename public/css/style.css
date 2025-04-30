@@ -194,16 +194,25 @@ body {
     border-bottom: 3px solid #fff; /* Agregar una línea en la parte inferior para separar */
 }
 
-.puntos {
+.puntos #puntaje {
+  font-size: 1.5em;
+  font-weight: bolder; /* Negrita más intensa */
+  color: #ffcc00; /* Color amarillo/dorado para el timer (destacado) */
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente para el timer */
+  padding: 8px 15px;
+  border-radius: 5px;
+  border: 1px solid #ffcc00; /* Borde sutil */
+}
+/* .puntos {
     font-size: 20px;
     font-weight: bold;
     color: #000;
     background-color: #fff;
     padding: 10px 20px;
     border-radius: 12px;
-}
+} */
 
-.perfil {
+/* .perfil {
     width: 50px;
     height: 50px;
     background-color: #ddd;
@@ -216,6 +225,26 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+} */
+
+.perfil {
+  background-color: #222; /* Fondo oscuro para el banner */
+  color: #fff; /* Color de texto principal en el banner */
+  padding: 15px 30px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.perfil #tiempo {
+  font-size: 1.5em;
+  font-weight: bolder; /* Negrita más intensa */
+  color: #ffcc00; /* Color amarillo/dorado para el timer (destacado) */
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente para el timer */
+  padding: 8px 15px;
+  border-radius: 5px;
+  border: 1px solid #ffcc00; /* Borde sutil */
 }
 
 .texto-banner {
@@ -420,6 +449,11 @@ button.opcion:active {
     text-align: center;
     color: #333;
     margin-bottom: 20px;
+}
+
+.contenedor-deshabilitado {
+  opacity: 0.5; 
+  pointer-events: none; /* Evita que los elementos dentro reciban eventos del ratón */
 }
 
 /* .ranking ul {
