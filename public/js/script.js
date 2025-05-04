@@ -1,4 +1,4 @@
-import { redireccionar, pathInicio_juego, setLocalJugador, getLocalJugador, puntajeTiempoReal, HabilitarContenedorOpciones, nuevoJugador, obtenerPreguntas, pathRanki_juego, registrarTiempo, iniciarTemporizador, removerJugador, cantPreguntas, removerPaises, limpiar, setLocalPaises, getLocalPaises, visible, creaEscribirNotificacion } from '../../funciones/funcionesComunes.js';
+import { reproducirSonido, redireccionar, pathInicio_juego, setLocalJugador, getLocalJugador, puntajeTiempoReal, HabilitarContenedorOpciones, nuevoJugador, obtenerPreguntas, pathRanki_juego, registrarTiempo, iniciarTemporizador, removerJugador, cantPreguntas, removerPaises, limpiar, setLocalPaises, getLocalPaises, visible, creaEscribirNotificacion } from '../../funciones/funcionesComunes.js';
 
 const contenedor = document.querySelector("#contenedor_juego")
 const contenedorOpciones = document.querySelector("#opciones")
@@ -9,6 +9,7 @@ contenedor.addEventListener('click', function (event) {
     if (event.target.tagName === 'BUTTON') {
         // alert(habilitarSiguiente)
         if (event.target.id == 'next' && habilitarSiguiente) {
+            reproducirSonido('click')
             siguiente()
 
         }
@@ -42,6 +43,8 @@ const btnPruebas = document.querySelector("#btnPruebas")
 if (btnPruebas) {
     btnPruebas.addEventListener("click", function () {
         reiniciarTodo()
+        // sonidos.ok.currentTime = 0;
+        //sonidos.ok.play();
     })
 }
 
@@ -90,26 +93,32 @@ function formularioInicio_view() {
             let hayError = false;
 
             if (nombreIngresado.length < 3) {
-                mostrarError("¡Mínimo 3 caracteres, *dale*!");
+                mostrarError("¡Mínimo 3 caracteres, *dale*!", errorNombreSpan);
                 hayError = true;
             } else if (nombreIngresado.length > 8) {
-                mostrarError("¡Máximo 8 caracteres, tranqui!");
+                mostrarError("¡Máximo 8 caracteres, tranqui!", errorNombreSpan);
                 hayError = true;
             } else if (!soloAlfanumerico) {
-                mostrarError("¡Solo letras y números, *pibe*!");
+                mostrarError("¡Solo letras y números, *pibe*!", errorNombreSpan);
                 hayError = true;
             }
 
             if (hayError) {
+                reproducirSonido('error')
                 return; // Ya prevenimos la recarga al inicio
             }
 
+            reproducirSonido('start')
             const form = event.target;
             const jugador = nuevoJugador(form.nombre.value)
             setLocalJugador(jugador)
 
+            setTimeout(() => {
+                redireccionar(pathInicio_juego)
+            }, 1350);
 
-            redireccionar(pathInicio_juego)
+
+
 
         });
     }
@@ -227,7 +236,7 @@ async function iniciarJuego() {
 
 
 
-function mostrarError(mensaje) {
+function mostrarError(mensaje, errorNombreSpan) {
     errorNombreSpan.textContent = mensaje;
     errorNombreSpan.classList.remove('oculto');
 }
@@ -291,7 +300,7 @@ function evaluarRepuesta(opcion) {
         /* const correcto = listaPregunta.find(lista => lista.respuestaCorrecta === data_name); */
         if (listaPregunta[data_index].respuestaCorrecta === data_name) {
 
-
+            reproducirSonido('ok')
             opcion.classList.add('correcta')
             //puntaje y cantidad de respuestas correctas
             /*  alert(listaPregunta[data_index].puntos + " " + estadoJuego.puntajeActual) */
@@ -299,7 +308,7 @@ function evaluarRepuesta(opcion) {
             estadoJuego.respuestasCorrectas++
 
         } else {
-
+            reproducirSonido('error')
             opcion.classList.add('incorrecta')
             const buscar = listaPregunta[data_index].respuestaCorrecta
             const encontrado = document.querySelector(`[data-name='${buscar}']`)

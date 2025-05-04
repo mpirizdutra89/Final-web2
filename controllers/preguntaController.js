@@ -144,7 +144,7 @@ function generarListaDePreguntas(paises, cantidad = 10) {
         }
 
 
-        // }, 5000);
+        // setTimeout(() => {}, 5000);
 
 
     } catch (error) {

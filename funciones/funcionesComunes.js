@@ -6,6 +6,13 @@ const itemPreguntaPaises = 'preguntaPaises'
 
 const pathInicio = '/'
 
+const sonidos = {
+    start: new Audio('../efectos/start.mp3'),
+    click: new Audio('../efectos/level.mp3'),
+    ok: new Audio('../efectos/ok.mp3'),
+    error: new Audio('../efectos/error.mp3'),
+    exito: new Audio('../efectos/playwing.mp3')
+}
 export const cantPreguntas = 10
 
 export const pathInicio_juego = '/iniciar-juego'
@@ -233,6 +240,25 @@ export const registrarTiempo = () => {
 
     // return tiempoTranscurridoMs;
 };
+
+
+
+
+
+/**
+ * Reproduce un sonido basado en el nombre proporcionado.
+ *
+ * @param {string} nombreSonido - El nombre del sonido a reproducir.
+ * Las opciones válidas son las claves del
+ * objeto 'sonidos' (ej: 'click', 'ok', 'error', 'exito').
+ */
+export const reproducirSonido = (nombreSonido) => {
+    if (sonidos.hasOwnProperty(nombreSonido)) {
+        sonidos[nombreSonido].play();
+    } /* else {
+        console.warn(`El sonido "${nombreSonido}" no está definido en el objeto 'sonidos'.`);
+    } */
+}
 
 // Formatea el tiempo en milisegundos a un formato legible (MM:SS o similar)
 const formatearTiempo = (ms) => {

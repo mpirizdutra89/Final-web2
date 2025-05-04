@@ -1,6 +1,14 @@
 extends layout.pug
 block content
     .caja-inicio
+        h4 Tipo de preguntas y su puntaje:
+        ul.informacion-juego  
+            li ¿Cuál es el país de esta capital? 
+                span.puntos (3 pts.)
+            li ¿A qué país pertenece esta bandera?
+                span.puntos (5 pts.)
+            li ¿Cuántos países limítrofes tiene este país?
+                span.puntos (3 pts.)
         
         form#iniciarJuego
             .container-btn-input
