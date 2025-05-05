@@ -146,7 +146,7 @@ function Ranquer() {
     if (botonCollapse) {
         botonCollapse.addEventListener('click', function () {
             contenidoCollapse.classList.toggle('mostrar');
-            botonCollapse.textContent = contenidoCollapse.classList.contains('mostrar') ? 'Ocultar Rankin' : 'Ver Rankin';
+            botonCollapse.textContent = contenidoCollapse.classList.contains('mostrar') ? 'Ocultar Ranking' : 'Ver Ranking';
         });
     }
 
