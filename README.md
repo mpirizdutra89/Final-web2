@@ -36,7 +36,8 @@ Además, el juego se alimenta de datos en tiempo real desde la API pública de *
 ## 📁 Estructura basica del proyecto
 
 preguntados/<br/>
-├── public/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# CSS personalizado <br/>
+├── public/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# CSS personalizado,script.js para front end <br/>
+├── funciones/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# funciones.js trabaja modularmente con el script del front end <br/>
 ├── data/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# json con el ranki de los jugadores <br/>
 ├── routes/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Rutas del servidor Express<br/>
 &nbsp;|── controllers/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Logica del juego<br/>
@@ -44,7 +45,7 @@ preguntados/<br/>
 ├── app.js &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Servidor config,  llamadas de la rutas y controladores<br/>
 └── README.md&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Descripcion y detalles importantes del sistema<br/>
 
-Nota:EL directorio puede diferi, pero esta es la estructura basica.<br/>
+Nota:EL directorio puede diferi, pero esta es la estructura basica. Tambien intente trabjar de manera modular, todo lo que es routes,controllers, etc.<br/>
 
 ## ▶️ Cómo ejecutar el proyecto
 
