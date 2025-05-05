@@ -39,7 +39,7 @@ preguntados/<br/>
 ├── routes/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Rutas del servidor Express<br/>
 &nbsp;|── controllers/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Logica del juego<br/>
 ├── views/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Vistas en Pug<br/>
-├── app.js &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Lógica principal del juego<br/>
+├── app.js &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Servidor config,  llamadas de la rutas y controladores<br/>
 └── README.md&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Descripcion y detalles importantes del sistema<br/>
 
 Nota:EL directorio puede diferi, pero esta es la estructura basica.<br/>
