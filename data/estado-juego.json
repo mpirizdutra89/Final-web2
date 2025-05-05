@@ -106,5 +106,17 @@
     "respuestasIncorrectas": 7,
     "tiempo_promedio": 13,
     "id": 9
+  },
+  {
+    "nombre": "aaa",
+    "inicio": true,
+    "finalizo": false,
+    "fecha": "5/5/2025",
+    "preguntaIndex": 10,
+    "puntajeActual": 6,
+    "respuestasCorrectas": 2,
+    "respuestasIncorrectas": 7,
+    "tiempo_promedio": 10,
+    "id": 10
   }
 ]

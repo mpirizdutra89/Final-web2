@@ -2,12 +2,11 @@ import { reproducirSonido, redireccionar, pathInicio_juego, setLocalJugador, get
 
 const contenedor = document.querySelector("#contenedor_juego")
 const contenedorOpciones = document.querySelector("#opciones")
-/* 
-let habilitarOpciones = false; */
+
 let habilitarSiguiente = false;
 contenedor.addEventListener('click', function (event) {
     if (event.target.tagName === 'BUTTON') {
-        // alert(habilitarSiguiente)
+
         if (event.target.id == 'next' && habilitarSiguiente) {
             reproducirSonido('click')
             siguiente()
@@ -21,7 +20,7 @@ contenedor.addEventListener('click', function (event) {
             evaluarRepuesta(elemento)
 
             HabilitarContenedorOpciones(true, contenedorOpciones)
-            registrarTiempo()//detiene el reloj depues de responder
+            registrarTiempo()
             habilitarSiguiente = true
 
 
@@ -138,10 +137,12 @@ function Ranquer() {
     const ranquer = document.querySelector("small#Ranquer")
     const cajaFin = document.querySelector("div#viewfin")
     const btnReiniciar = document.querySelector("a.boton-reiniciar")
+    if (btnReiniciar) {
+        btnReiniciar.addEventListener("click", () => {
+            reiniciarTodo()
+        })
+    }
 
-    btnReiniciar.addEventListener("click", () => {
-        reiniciarTodo()
-    })
 
     if (ranquer) {
 
@@ -184,8 +185,10 @@ function Ranquer() {
 
         /*  */
     } else {
-        cajaFin.style.visibility = 'visible'
-        btnResultado.style.visibility = 'hidden';
+
+        cajaFin ? cajaFin.style.visibility = 'visible' : "";
+
+        btnResultado ? btnResultado.style.visibility = 'hidden' : "";
 
     }
 }
