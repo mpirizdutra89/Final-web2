@@ -39,8 +39,8 @@ app.use(errorHandler);
 /* ALWAYSDATA_HTTPD_ PORT
 ALWAYSDATA_HTTPD_IP */
 
-console.log(`PORT value before listen: ${PORT} , ${HOST} `);
-console.log(`${alwaysdataIP} , : ${alwaysdataPort} `);
+/* console.log(`PORT value before listen: ${PORT} , ${HOST} `);
+console.log(`${alwaysdataIP} , : ${alwaysdataPort} `); */
 
 app.listen(PORT, HOST, () => {
   console.log(`Servidor corriendo en http://${HOST}:${PORT}`)
