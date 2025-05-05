@@ -1,6 +1,11 @@
 /* import { json } from "express" */
 
 /* Variables */
+
+
+
+
+
 const itemJugador = 'InicioJuego'
 const itemPreguntaPaises = 'preguntaPaises'
 
@@ -78,6 +83,7 @@ export const leerNotificar = () => {
 
 export const removerJugador = () => {
     localStorage.removeItem(itemJugador)
+    localStorage.removeItem('jugadorfinal')
 
 }
 export const removerPaises = () => {
@@ -88,12 +94,20 @@ export const removerPaises = () => {
 export const setLocalJugador = (objeto) => {
     localStorage.setItem(itemJugador, JSON.stringify(objeto));
 }
+
+export const setLocalJugador2 = (objeto) => {
+    localStorage.setItem('jugadorfinal', JSON.stringify(objeto));
+}
 export const setLocalPaises = (objeto) => {
     localStorage.setItem(itemPreguntaPaises, JSON.stringify(objeto));
 }
 
 export const getLocalJugador = () => {
     return localStorage.getItem(itemJugador)
+}
+
+export const getLocalJugador2 = () => {
+    return localStorage.getItem('jugadorfinal')
 }
 export const getLocalPaises = () => {
     return localStorage.getItem(itemPreguntaPaises)
@@ -108,6 +122,7 @@ export const fechaHoy = () => {
 export const nuevoJugador = (name) => {
     return {
         nombre: name,
+        idUnico: 0,
         inicio: true,// el true es que esta jugando
         finalizo: false,
         fecha: fechaHoy(),
@@ -115,6 +130,7 @@ export const nuevoJugador = (name) => {
         puntajeActual: 0,
         respuestasCorrectas: 0,
         respuestasIncorrectas: 0,
+        tiempo_total: 0,
         tiempo_promedio: 0 //aca se va sumando el tiempo y depues lo divido por 10
     }
 }
@@ -255,7 +271,9 @@ export const registrarTiempo = () => {
 
     let estadoJuego = JSON.parse(getLocalJugador())
 
-    estadoJuego.tiempo_promedio += Math.floor((tiempoTranscurridoMs % (1000 * 60)) / 1000);
+    estadoJuego.tiempo_total = parseInt(estadoJuego.tiempo_total) + Math.floor((tiempoTranscurridoMs % (1000 * 60)) / 1000);
+    /*     console.log("registraTiempo():")
+        console.log(estadoJuego) */
     setLocalJugador(estadoJuego)
 
     detenerVisualizacionTiempo();

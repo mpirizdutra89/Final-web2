@@ -1,6 +1,13 @@
 const fs = require('fs').promises
 const path = require('path');
 const estadoJuego = path.join(__dirname, '../data/estado-juego.json');
+const { v4: uuidv4 } = require('uuid');
+
+const generarIdUnico = () => {
+    return uuidv4();
+
+}
+
 
 
 exports.nuevoJugador = (req, res) => {
@@ -19,8 +26,8 @@ exports.finJuego = async (req, res) => {
         const ultimoJugador = estadoJugadores[estadoJugadores.length - 1]
         // console.log(`Estoy fin de juego: lina 20 para ultimo jugador: ${ultimoJugador}`)
 
-        ultimoJugador.tiempo_total = formatearTiempo(ultimoJugador.tiempo_promedio)//agrego solo para este jugador el tiempo total
-        ultimoJugador.tiempo_promedio = parseInt(ultimoJugador.tiempo_promedio) / 10
+        /*  ultimoJugador.tiempo_total = ultimoJugador.tiempo_total//agrego solo para este jugador el tiempo total
+         ultimoJugador.tiempo_promedio = ultimoJugador.tiempo_promedio */
         //#{ultimoJugador.tiempo_promedio}
         console.log(ultimoJugador)
 
@@ -260,15 +267,23 @@ exports.gurdarEstado = async (req, res) => {
 
         const archivo = await fs.readFile(estadoJuego, 'utf8')
         const json = JSON.parse(archivo)
-        const data = req.body
-        console.log(json.length)
+        const data = req.body;
 
         data.id = json.length + 1
+        data.idUnico = generarIdUnico()
+        data.tiempo_total = formatearTiempo(data.tiempo_total)//agrego solo para este jugador el tiempo total
+        data.tiempo_promedio = parseInt(data.tiempo_total) / 10
+
+
+
         json.push(data)
         await fs.writeFile(estadoJuego, JSON.stringify(json, null, 2));
         //respuesta del servidor al formulario
+        console.log("servidor:")
+        console.log(data)
         res.json({
             ok: true,
+            data: data,
             msj: 'Estado del juego guardado'
         })
 
@@ -276,6 +291,7 @@ exports.gurdarEstado = async (req, res) => {
         console.log("servidor:", `Mensaje: ${error}`)
         res.json({
             ok: false,
+            data: {},
             msj: `Ocurrio un fallo, mensaje: ${error}`
         })
     }

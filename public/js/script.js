@@ -1,4 +1,4 @@
-import { reproducirSonido, redireccionar, pathInicio_juego, setLocalJugador, getLocalJugador, puntajeTiempoReal, finJuego, HabilitarContenedorOpciones, nuevoJugador, obtenerPreguntas, pathRanki_juego, registrarTiempo, iniciarTemporizador, removerJugador, cantPreguntas, removerPaises, limpiar, setLocalPaises, getLocalPaises, visible, creaEscribirNotificacion } from '../../funciones/funcionesComunes.js';
+import { reproducirSonido, redireccionar, pathInicio_juego, setLocalJugador, getLocalJugador, puntajeTiempoReal, finJuego, getLocalJugador2, setLocalJugador2, HabilitarContenedorOpciones, nuevoJugador, obtenerPreguntas, pathRanki_juego, registrarTiempo, iniciarTemporizador, removerJugador, cantPreguntas, removerPaises, limpiar, setLocalPaises, getLocalPaises, visible, creaEscribirNotificacion } from '../../funciones/funcionesComunes.js';
 
 const contenedor = document.querySelector("#contenedor_juego")
 const contenedorOpciones = document.querySelector("#opciones")
@@ -118,18 +118,7 @@ function formularioInicio_view() {
 
 }
 
-/*  tipo: 1,
-    pregunta: '¿A qué país pertenece la siguiente bandera?',
-    banderaURL: 'https://flagcdn.com/w320/ky.png',
-    respuestaCorrecta: 'Cayman Islands',
-    puntos: 5,
-    opciones: [
-      'Cayman Islands',
-      'Ivory Coast',
-      'South Georgia',
-      'Marshall Islands'
-    ]// miBoton.dataset.id;
-  }, */
+
 
 function Ranquer() {
 
@@ -144,6 +133,30 @@ function Ranquer() {
     const contenidoCollapse = document.getElementById('contenido-collapse');
 
     if (botonCollapse) {
+
+        const jugadorActual = JSON.parse(getLocalJugador2())
+        const idUnico = document.querySelector("li#idUnico")
+        const ul = document.querySelector("ul.ultimo-jugador")
+        if (idUnico && jugadorActual) {
+            console.log(jugadorActual)
+
+            if (idUnico.textContent !== jugadorActual.idUnico) {
+                ul.innerHTML = ''
+                ul.innerHTML = `
+                 <li id='idUnico' style='display:none'>${jugadorActual.idUnico}</li>
+                <li>Nombre: <strong>${jugadorActual.nombre}</strong></li>
+                <li>Nombre: <strong>${jugadorActual.puntajeActual}</strong></li>
+                <li>Correctas: <strong>${jugadorActual.respuestasCorrectas}</strong></li>
+                <li>Incorrectas: <strong>${jugadorActual.respuestasIncorrectas}</strong></li>
+                <li>Tiempo total: <strong>${jugadorActual.tiempo_total}</strong></li>
+                <li>Tiempo promedio: <strong>${jugadorActual.tiempo_promedio}</strong></li>
+                `;
+            }
+
+        }
+
+
+
         botonCollapse.addEventListener('click', function () {
             contenidoCollapse.classList.toggle('mostrar');
             botonCollapse.textContent = contenidoCollapse.classList.contains('mostrar') ? 'Ocultar Ranking' : 'Ver Ranking';
@@ -165,6 +178,10 @@ function Ranquer() {
 
 
     if (ranquer) {
+
+
+        //Nota aca acon la ayuda del id verificar que lo que vine esta correcto Conisida con el id de local storage
+        //
 
         cajaFin.style.visibility = 'hidden';
         btnResultado.style.visibility = 'visible';
@@ -258,7 +275,7 @@ async function iniciarJuego() {
         const listaPregunta = JSON.parse(getLocalPaises())
 
         if (estadoJuego) {
-
+            document.querySelector("h2.name-jugador").innerHTML = `${estadoJuego.nombre}`
             puntajeTiempoReal(estadoJuego.puntajeActual, document.querySelector("span#puntaje"))
 
 
@@ -287,8 +304,7 @@ async function iniciarJuego() {
                     /* alert(estadoJuego.preguntaIndex) */
                     mostrarPregunta(listaPregunta[estadoJuego.preguntaIndex], estadoJuego.preguntaIndex)
                 } else {
-                    //ir al ranki
-                    // redireccionar()
+                    redireccionar(pathRanki_juego)
                 }
 
             }
@@ -334,6 +350,7 @@ function loaderspiner(activo) {
 function reiniciarTodo() {
     removerJugador()
     removerPaises()
+
     redireccionar()
 }
 
@@ -394,6 +411,7 @@ function evaluarRepuesta(opcion) {
 
         }
         estadoJuego.preguntaIndex++;
+
         setLocalJugador(estadoJuego)
         puntajeTiempoReal(estadoJuego.puntajeActual, document.querySelector("span#puntaje"))
 
@@ -402,9 +420,9 @@ function evaluarRepuesta(opcion) {
             (async () => {
 
                 const resultado = await enviarDatos();
-
+                console.log(resultado.data)
+                setLocalJugador2(resultado.data)
                 redireccionar(pathRanki_juego)
-
 
             })();
         }
@@ -419,6 +437,7 @@ function evaluarRepuesta(opcion) {
 
 async function enviarDatos() {
     const estadoJuego = JSON.parse(getLocalJugador())
+
     let resultado = {}
     if (estadoJuego) {
         resultado = await finJuego(estadoJuego);

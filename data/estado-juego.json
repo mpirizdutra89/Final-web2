@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "nombre": "Martin",
+    "nombre": "marcos",
     "inicio": true,
     "finalizo": false,
     "fecha": "5/5/2025",
@@ -12,32 +12,8 @@
     "tiempo_promedio": 15
   },
   {
-    "id": 2,
-    "nombre": "ana",
-    "inicio": true,
-    "finalizo": false,
-    "fecha": "5/5/2025",
-    "preguntaIndex": 10,
-    "puntajeActual": 8,
-    "respuestasCorrectas": 2,
-    "respuestasIncorrectas": 7,
-    "tiempo_promedio": 5
-  },
-  {
-    "id": 3,
-    "nombre": "juna",
-    "inicio": true,
-    "finalizo": false,
-    "fecha": "5/5/2025",
-    "preguntaIndex": 10,
-    "puntajeActual": 15,
-    "respuestasCorrectas": 5,
-    "respuestasIncorrectas": 4,
-    "tiempo_promedio": 4
-  },
-  {
-    "id": 4,
-    "nombre": "andres",
+    "nombre": "pablo",
+    "idUnico": "adb37c17-82a8-4a4e-bc1e-c2efae0d969c",
     "inicio": true,
     "finalizo": false,
     "fecha": "5/5/2025",
@@ -45,90 +21,36 @@
     "puntajeActual": 9,
     "respuestasCorrectas": 3,
     "respuestasIncorrectas": 6,
-    "tiempo_promedio": 4
+    "tiempo_total": "7 segundos",
+    "tiempo_promedio": 0.7,
+    "id": 24
   },
   {
-    "id": 5,
-    "nombre": "veronica",
+    "nombre": "Martin",
+    "idUnico": "1ad03ef8-cd8d-482c-904c-ce56ae966ee7",
     "inicio": true,
     "finalizo": false,
     "fecha": "5/5/2025",
     "preguntaIndex": 10,
-    "puntajeActual": 3,
-    "respuestasCorrectas": 1,
-    "respuestasIncorrectas": 8,
-    "tiempo_promedio": 7
-  },
-  {
-    "id": 6,
-    "nombre": "vale",
-    "inicio": true,
-    "finalizo": false,
-    "fecha": "5/5/2025",
-    "preguntaIndex": 10,
-    "puntajeActual": 1,
-    "respuestasCorrectas": 4,
-    "respuestasIncorrectas": 5,
-    "tiempo_promedio": 5
-  },
-  {
-    "nombre": "silvia",
-    "inicio": true,
-    "finalizo": false,
-    "fecha": "5/5/2025",
-    "preguntaIndex": 10,
-    "puntajeActual": 11,
+    "puntajeActual": 9,
     "respuestasCorrectas": 3,
     "respuestasIncorrectas": 6,
-    "tiempo_promedio": 6,
-    "id": 7
+    "tiempo_total": "4 segundos",
+    "tiempo_promedio": 0.4,
+    "id": 3
   },
   {
-    "nombre": "walter",
+    "nombre": "andrea",
+    "idUnico": "e2ac827d-8ffc-4317-89f7-27d34ad515d0",
     "inicio": true,
     "finalizo": false,
     "fecha": "5/5/2025",
     "preguntaIndex": 10,
-    "puntajeActual": 14,
-    "respuestasCorrectas": 4,
-    "respuestasIncorrectas": 5,
-    "tiempo_promedio": 11,
-    "id": 8
-  },
-  {
-    "nombre": "mariano",
-    "inicio": true,
-    "finalizo": false,
-    "fecha": "5/5/2025",
-    "preguntaIndex": 10,
-    "puntajeActual": 8,
-    "respuestasCorrectas": 2,
-    "respuestasIncorrectas": 7,
-    "tiempo_promedio": 13,
-    "id": 9
-  },
-  {
-    "nombre": "aaa",
-    "inicio": true,
-    "finalizo": false,
-    "fecha": "5/5/2025",
-    "preguntaIndex": 10,
-    "puntajeActual": 6,
-    "respuestasCorrectas": 2,
-    "respuestasIncorrectas": 7,
-    "tiempo_promedio": 10,
-    "id": 10
-  },
-  {
-    "nombre": "paula",
-    "inicio": true,
-    "finalizo": false,
-    "fecha": "5/5/2025",
-    "preguntaIndex": 10,
-    "puntajeActual": 0,
-    "respuestasCorrectas": 0,
-    "respuestasIncorrectas": 9,
-    "tiempo_promedio": 28,
-    "id": 11
+    "puntajeActual": 19,
+    "respuestasCorrectas": 5,
+    "respuestasIncorrectas": 4,
+    "tiempo_total": "20 segundos",
+    "tiempo_promedio": 2,
+    "id": 4
   }
 ]
