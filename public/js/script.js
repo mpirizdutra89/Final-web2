@@ -151,7 +151,8 @@ function mostrarPregunta(preguntaObj, index = 0) {
     if (preguntaObj.tipo !== 1) {
         cajaPregunta.innerHTML = `<h4 class='pregunta'>${preguntaObj.pregunta}</h4>`
     } else {
-        cajaPregunta.innerHTML = `<img src='${preguntaObj.banderaURL}' alt='${preguntaObj.respuestaCorrecta}' />`
+        cajaPregunta.innerHTML = `<h4 class='pregunta'>${preguntaObj.pregunta}</h4>
+        <img class='flag' src='${preguntaObj.banderaURL}' alt='${preguntaObj.respuestaCorrecta}' />`
     }
 
 

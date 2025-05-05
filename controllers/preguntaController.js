@@ -17,14 +17,26 @@ exports.ranki = (req, res) => {
 
 
 
-function generarPregunta(paises) {
-    const tipoPregunta = Math.floor(Math.random() * 3);
-    let preguntaData = null;
+function generarPregunta(paises, tipoPregunta) {
+    //const tipoPregunta = Math.floor(Math.random() * 3); // vine una secuncia donde solo hay dos pregunta para bandera y de las otras 4 cada una
+    let preguntaData = null
+    let latin = true
 
+    //console.log(paises)
     switch (tipoPregunta) {
         case 0: // ¿Cual es el país de la siguiente ciudad capital?
-            const paisCapital = paises[Math.floor(Math.random() * paises.length)];
-            const capital = paisCapital.capital?.[0];
+            let capital = ""
+            let paisCapital = {}
+            while (latin) {
+                paisCapital = randomPais(paises)
+                capital = paisCapital.capital?.[0]
+                if (esTextoLatino(capital)) {
+                    latin = false // sale del while y sigue con el codigo
+
+                }
+            }
+
+
             if (capital) {
                 preguntaData = {
                     tipo: 0,
@@ -36,19 +48,44 @@ function generarPregunta(paises) {
             break;
 
         case 1: // El país xx esta representado por la siguiente bandera ¿?
-            const paisBandera = paises[Math.floor(Math.random() * paises.length)];
+
+
+            let namePais = ""
+            let paisBandera = {}
+            while (latin) {
+                paisBandera = randomPais(paises)
+                namePais = paisBandera.name.common
+                if (esTextoLatino(namePais)) {
+                    latin = false // sale del while y sigue con el codigo
+
+                }
+            }
+
+
+
             preguntaData = {
                 tipo: 1,
                 pregunta: `¿A qué país pertenece la siguiente bandera?`,
                 banderaURL: paisBandera.flags.png,
-                respuestaCorrecta: paisBandera.name.common,
+                respuestaCorrecta: namePais,
                 puntos: 5,
             };
             break;
 
         case 2: // ¿Cuantos países limítrofes tiene el siguiente país?
-            const paisFronteras = paises[Math.floor(Math.random() * paises.length)];
-            const nombrePais = paisFronteras.name.common;
+
+            let nombrePais = ""
+            let paisFronteras = {}
+            while (latin) {
+                paisFronteras = randomPais(paises)
+                nombrePais = paisFronteras.name.common
+                if (esTextoLatino(nombrePais)) {
+                    latin = false // sale del while y sigue con el codigo
+
+                }
+            }
+
+
             preguntaData = {
                 tipo: 2,
                 pregunta: `¿Cuántos países limítrofes tiene ${nombrePais}?`,
@@ -60,11 +97,16 @@ function generarPregunta(paises) {
 
     if (preguntaData) {
 
-        const opciones = generarOpciones(preguntaData, paises);
-        return { ...preguntaData, opciones: opciones };
+        const opciones = generarOpciones(preguntaData, paises)
+        return { ...preguntaData, opciones: opciones }
     }
 
-    return null;
+    return null
+}
+
+
+const randomPais = (paises) => {
+    return paises[Math.floor(Math.random() * paises.length)]
 }
 
 
@@ -96,65 +138,28 @@ function generarOpciones(pregunta, paises) {
 }
 
 
-/* function generarListaDePreguntas(paises, cantidad = 10) {
-    const listaDePreguntas = [];
-    for (let i = 0; i < cantidad; i++) {
-        const preguntaConOpciones = generarPregunta(paises);
-        preguntaConOpciones.id = i + 1;
-        if (preguntaConOpciones) {
-            listaDePreguntas.push(preguntaConOpciones);
-        }
-    }
-    return listaDePreguntas;
-} */
+
 
 
 
 function generarListaDePreguntas(paises, cantidad = 10) {
     const listaDePreguntas = [];
+    const secuencia = [0, 0, 0, 0, 1, 1, 2, 2, 2, 2]
     for (let i = 0; i < cantidad; i++) {
-        const pregunta = generarPregunta(paises);
+        const pregunta = generarPregunta(paises, secuencia[i]);
         if (pregunta) {
             listaDePreguntas.push(pregunta);
         }
     }
-    console.log(`generarListaDePreguntas(paises,10) cantida:${cantidad} | ${listaDePreguntas.length} `)
-    return listaDePreguntas;
+    const preguntasMezcladas = mezclarArrayFisherYates(listaDePreguntas);
+    console.log(`generarListaDePreguntas(paises,10) cantida: ${listaDePreguntas.length} `)
+    return preguntasMezcladas;
 }
 
 
 
 
 
-
-/* exports.obtenerPreguntasJuego = async (req, res) => {
-
-
-    try {
-        const restcountries = await fetch('https://restcountries.com/v3.1/all?fields=name,capital,flags,borders');
-        const data = await restcountries.json();
-        //  setTimeout(() => {
-        if (data.length > 0) {
-            const preguntasConOpciones = generarListaDePreguntas(data);
-            console.log("Preguntas", preguntasConOpciones)
-
-            res.json({ ok: true, data: preguntasConOpciones });
-        } else {
-            res.status(500).json({ ok: false, data: `falla funcion obtnerPregunraJuego() Error HTTP: ${restcountries.status}` });
-        }
-
-
-        // setTimeout(() => {}, 5000);
-
-
-    } catch (error) {
-        console.error('Error al obtener datos de países:', error);
-        res.status(500).json({ ok: false, error: 'Error al obtener los datos de los países desde la API.' });
-    }
-
-
-
-} */
 
 
 exports.obtenerPreguntasJuego = async (req, res) => {
@@ -185,6 +190,56 @@ exports.obtenerPreguntasJuego = async (req, res) => {
     }
 };
 
+
+
+const esTextoLatino = (texto) => {
+    if (!texto) {
+        return true; // Considerar una cadena vacía como latina
+    }
+
+    for (let i = 0; i < texto.length; i++) {
+        const charCode = texto.charCodeAt(i);
+
+        // Rangos de Unicode para letras latinas (mayúsculas y minúsculas)
+        const esLatina = (charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122);
+
+        // Rangos de Unicode para números
+        const esNumero = charCode >= 48 && charCode <= 57;
+
+        // Símbolos de puntuación y espacios comunes
+        const esSimboloComun = [32, 33, 34, 39, 44, 45, 46, 58, 59, 63].includes(charCode);
+
+        // Caracteres latinos extendidos (con acentos, diéresis, etc.)
+        const esLatinaExtendida = (charCode >= 192 && charCode <= 255);
+
+        if (!esLatina && !esNumero && !esSimboloComun && !esLatinaExtendida) {
+            return false; // Encontramos un carácter que no parece latino, número o símbolo común
+        }
+    }
+
+    return true; // Todos los caracteres parecen ser latinos, números o símbolos comunes
+}
+
+
+const mezclarArrayFisherYates = (array) => {
+    const nuevoArray = [...array];
+    let currentIndex = nuevoArray.length;
+
+
+    while (currentIndex !== 0) {
+
+        const randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+
+        [nuevoArray[currentIndex], nuevoArray[randomIndex]] = [
+            nuevoArray[randomIndex],
+            nuevoArray[currentIndex],
+        ];
+    }
+
+    return nuevoArray;
+}
 
 
 //si se cae la pagina de la api

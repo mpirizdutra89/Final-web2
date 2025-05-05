@@ -23,6 +23,12 @@ body {
     border-bottom: 3px solid #fff; /* Agregar una línea en la parte inferior para separar */
 }
 
+
+.banner .puntos{
+  width: 10%;
+  text-align: left;
+}
+
 .puntos #puntaje {
   font-size: 1.5em;
   font-weight: bolder; /* Negrita más intensa */
@@ -33,7 +39,10 @@ body {
   border: 1px solid #ffcc00; /* Borde sutil */
 }
 
-
+.flag{
+  height: auto;
+  width: 50%;
+}
 .perfil {
   background-color: #222; /* Fondo oscuro para el banner */
   color: #fff; /* Color de texto principal en el banner */
