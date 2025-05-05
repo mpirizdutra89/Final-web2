@@ -1,0 +1,52 @@
+extends layout.pug
+block content
+    .caja-inicio
+            
+        if estadoJuego && ultimoJugador && estadoJuego.length > 0
+            div(id='finJuego')
+                h4(style='text-align: center') Juego terminado 
+                if !esta 
+                    small.fuera Estas fuera del ranki.
+                else 
+                    small#Ranquer Estas dentro del ranki    
+                ul.ultimo-jugador
+                    li Nombre:
+                        strong #{ultimoJugador.nombre}
+                    li Puntaje:
+                        strong #{ultimoJugador.puntajeActual}
+                    li Correctas:
+                        strong #{ultimoJugador.respuestasCorrectas}
+                    li Incorrectas:
+                        strong #{ultimoJugador.respuestasIncorrectas}
+                    li Tiempo total: 
+                        strong #{ultimoJugador.tiempo_total}
+                    li Tiempo promedio: 
+                        strong #{ultimoJugador.tiempo_promedio}
+            .ranking
+                h2 Ranking
+                
+                table#ranking-table
+                    thead
+                        tr
+                            th Ranki
+                            th Nombre
+                            th Puntos
+                    tbody
+                         - let ranki=1
+                         each estado in estadoJuego
+                            if estado.nombre!==ultimoJugador.nombre
+                                
+                                tr.jugadoresRanki
+                                    td #{ranki}
+                                    td #{estado.nombre}
+                                    td #{estado.puntajeActual}
+                            else
+                                tr.jugadorActual
+                                    td #{ranki}
+                                    td #{estado.nombre}
+                                    td #{estado.puntajeActual}
+                            - ranki++
+                script(src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js") 
+        else 
+            h4 Noy hay jugadores para armar el rankin
+                                

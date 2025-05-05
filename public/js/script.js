@@ -1,4 +1,4 @@
-import { reproducirSonido, redireccionar, pathInicio_juego, setLocalJugador, getLocalJugador, puntajeTiempoReal, HabilitarContenedorOpciones, nuevoJugador, obtenerPreguntas, pathRanki_juego, registrarTiempo, iniciarTemporizador, removerJugador, cantPreguntas, removerPaises, limpiar, setLocalPaises, getLocalPaises, visible, creaEscribirNotificacion } from '../../funciones/funcionesComunes.js';
+import { reproducirSonido, redireccionar, pathInicio_juego, setLocalJugador, getLocalJugador, puntajeTiempoReal, finJuego, HabilitarContenedorOpciones, nuevoJugador, obtenerPreguntas, pathRanki_juego, registrarTiempo, iniciarTemporizador, removerJugador, cantPreguntas, removerPaises, limpiar, setLocalPaises, getLocalPaises, visible, creaEscribirNotificacion } from '../../funciones/funcionesComunes.js';
 
 const contenedor = document.querySelector("#contenedor_juego")
 const contenedorOpciones = document.querySelector("#opciones")
@@ -33,7 +33,7 @@ contenedor.addEventListener('click', function (event) {
 
 formularioInicio_view()
 iniciarJuego()
-
+Ranquer()
 
 
 
@@ -140,7 +140,37 @@ function formularioInicio_view() {
     ]// miBoton.dataset.id;
   }, */
 
+function Ranquer() {
+    const ranquer = document.querySelector("small#Ranquer")
+    if (ranquer) {
 
+        const duration = 5 * 1000;
+        const end = Date.now() + duration;
+        reproducirSonido('exito')
+        function frame() {
+            confetti({
+                particleCount: 7,
+                angle: 60,
+                spread: 55,
+                origin: { x: 0 }
+            });
+
+            confetti({
+                particleCount: 7,
+                angle: 120,
+                spread: 55,
+                origin: { x: 1 }
+            });
+
+            if (Date.now() < end) {
+                animationFrameId = requestAnimationFrame(frame);
+            }
+        }
+
+        // Inicia la animación
+        frame();
+    }
+}
 
 function mostrarPregunta(preguntaObj, index = 0) {
 
@@ -324,11 +354,35 @@ function evaluarRepuesta(opcion) {
         setLocalJugador(estadoJuego)
         puntajeTiempoReal(estadoJuego.puntajeActual, document.querySelector("span#puntaje"))
 
-        leerObjeto(estadoJuego)
-        console.log(listaPregunta)
+        if (estadoJuego.preguntaIndex >= 10) {
+            loaderspiner(true);
+            (async () => {
+
+                const resultado = await enviarDatos();
+
+                redireccionar(pathRanki_juego)
+
+
+            })();
+        }
+
+        //leerObjeto(estadoJuego)
+        //console.log(listaPregunta)
 
     }
 
+}
+
+
+async function enviarDatos() {
+    const estadoJuego = JSON.parse(getLocalJugador())
+    let resultado = {}
+    if (estadoJuego) {
+        resultado = await finJuego(estadoJuego);
+    }
+
+
+    return resultado;
 }
 
 

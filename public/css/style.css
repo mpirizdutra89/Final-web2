@@ -340,10 +340,13 @@ button.opcion:active {
   .ranking thead {
     background-color: #f8f8f8;
   }
+  .ranking thead tr {
+    background-color: black;
+  }
   
   .ranking th {
     font-weight: bold;
-    color: #333;
+    color: white;
   }
   
   .ranking tbody tr {
@@ -355,10 +358,34 @@ button.opcion:active {
     background-color: #fafafa;
   }
   
-  .ranking tbody tr:hover {
+  .ranking tbody tr.jugadoresRanki:hover {
     background-color: #e63946;
     color: white;
     transform: scale(1.02);
+  }
+
+small.fuera{
+  color: red;
+  font-weight: bold;
+}
+small#Ranquer{
+  color: green;
+  font-weight: bold;
+}
+
+  .jugadorActual {
+    animation: jugadorActual 1s infinite alternate; 
+  }
+  
+  @keyframes jugadorActual {
+    from {
+      background-color: #e63946;
+      color: white; 
+    }
+    to {
+      background-color: #e0848c;
+      color: wheat; 
+    }
   }
   
   .ranking tbody tr td { /* Estilo para la columna de nombre */
@@ -404,42 +431,7 @@ button.opcion:active {
     z-index: 10;
   }
 
-  /* pruebas */
- /*  .input-nombre input[type="text"] {
-    background-color: #f8f8f8;
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 5px;
-    font-family: sans-serif;
-    margin-bottom: 10px;
-    width: 250px;
-  }
   
-  .input-nombre input[type="text"]:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 7px rgba(0, 123, 255, 0.5);
-    outline: none;
-  }
-  
-  .boton-iniciar-juego {
-    background-color: #ffc107; 
-    color: #333;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
-  .boton-iniciar-juego:hover {
-    background-color: #e0a800;
-  }
-  .boton-iniciar-juego:active {
-    transform: scale(0.95); 
-    box-shadow: 1px 1px 3px #aaa; 
-  } */
-
   .container-btn-input {
     display: flex; /* Alinea los elementos en la misma línea */
     margin-top: 20px;
@@ -498,6 +490,30 @@ button.opcion:active {
   }
 
 
+  .ultimo-jugador {
+    list-style: none; 
+    padding: 0;
+    margin-bottom: 20px; 
+    font-family: sans-serif; 
+    border: 1px solid #ccc; 
+    border-radius: 8px; 
+    padding: 15px; 
+    background-color: #f9f9f9; 
+    text-align: left;
+  }
+  
+  .ultimo-jugador li {
+    margin-bottom: 8px; 
+    color: #333; 
+  }
+  
+  .ultimo-jugador strong {
+    font-weight: bold; 
+    color: #007bff; 
+  }
+ 
+
+
   /* Carga  efectos*/
 
   /* loader basico */
@@ -545,46 +561,7 @@ button.opcion:active {
     100% { opacity: 1; transform: scale(1.2); }
   }
 
-  /* cubo gitatorio */
-  /* .sk-folding-cube {
-    margin: 20px auto;
-    width: 40px;
-    height: 40px;
-    position: relative;
-    transform: rotateZ(45deg);
-  }
-  
-  .sk-folding-cube .sk-cube {
-    float: left;
-    width: 50%;
-    height: 50%;
-    position: relative;
-    transform: scale(1.1);
-  }
-  
-  .sk-folding-cube .sk-cube:before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(230, 57, 70, 0.9);
-    animation: sk-foldCubeAngle 2.4s infinite linear both;
-    transform-origin: 100% 100%;
-  }
-  
-  .sk-folding-cube .sk-cube2 { transform: scale(1.1) rotateZ(90deg); }
-  .sk-folding-cube .sk-cube3 { transform: scale(1.1) rotateZ(180deg); }
-  .sk-folding-cube .sk-cube4 { transform: scale(1.1) rotateZ(270deg); }
-  .sk-folding-cube .sk-cube2:before { animation-delay: 0.3s; }
-  .sk-folding-cube .sk-cube3:before { animation-delay: 0.6s; }
-  .sk-folding-cube .sk-cube4:before { animation-delay: 0.9s; }
-  
-  @keyframes sk-foldCubeAngle {
-    0%, 10%   { transform: perspective(140px) rotateX(-180deg); opacity: 0; }
-    25%, 75%  { transform: perspective(140px) rotateX(0deg);     opacity: 1; }
-    90%, 100% { transform: perspective(140px) rotateY(180deg); opacity: 0; }
-  } */
-
+ 
   /* Contenedor para centrar el cubo */
 .sk-folding-cube-container {
     position: fixed; /* Para que flote */

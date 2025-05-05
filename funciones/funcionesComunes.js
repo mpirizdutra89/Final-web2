@@ -16,7 +16,7 @@ const sonidos = {
 export const cantPreguntas = 10
 
 export const pathInicio_juego = '/iniciar-juego'
-export const pathRanki_juego = '/iniciar-juego/ranki'
+export const pathRanki_juego = '/iniciar-juego/fin-juego'
 
 
 let startTime = 0
@@ -123,6 +123,28 @@ export async function obtenerPreguntas() {
     try {
 
         const response = await fetch('/iniciar-juego/obtener-preguntas');
+        /* if (!response.ok) {
+            throw new Error(`Error al cargar preguntas: ${response.status}`);
+        } */
+
+        return await response.json();
+    } catch (error) {
+        console.error('Error al obtener preguntas:', error);
+        return [{ ok: false, data: `Ocurrio un fallo en la obtencion de datos` }];
+    }
+}
+
+
+export async function finJuego(data) {
+    try {
+
+        const response = await fetch('/iniciar-juego/gurdar-estado', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
         /* if (!response.ok) {
             throw new Error(`Error al cargar preguntas: ${response.status}`);
         } */

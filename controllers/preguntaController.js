@@ -1,17 +1,79 @@
+const fs = require('fs').promises
+const path = require('path');
+const estadoJuego = path.join(__dirname, '../data/estado-juego.json');
+
+
 exports.nuevoJugador = (req, res) => {
 
 
     res.render('preguntas', { titulo: 'Incicio del juego' })
 }
+//
 
-exports.ranki = (req, res) => {
-    //mandar un json con los datos que necito mostrar mas el ranki
-    //leer los datos del juego que deberian estar en un json
-    res.render('ranki', { titulo: 'Ranki' })
+exports.finJuego = async (req, res) => {
+
+    try {
+        const archivo = await fs.readFile(estadoJuego, 'utf8')
+        const estadoJugadores = JSON.parse(archivo)
+
+        const ultimoJugador = estadoJugadores[estadoJugadores.length - 1]
+        // console.log(`Estoy fin de juego: lina 20 para ultimo jugador: ${ultimoJugador}`)
+
+        ultimoJugador.tiempo_total = formatearTiempo(ultimoJugador.tiempo_promedio)//agrego solo para este jugador el tiempo total
+        ultimoJugador.tiempo_promedio = parseInt(ultimoJugador.tiempo_promedio) / 10
+        //#{ultimoJugador.tiempo_promedio}
+        console.log(ultimoJugador)
+
+        estadoJugadores.sort((a, b) => {
+
+            if (b.puntajeActual !== a.puntajeActual) {
+                return b.puntajeActual - a.puntajeActual;
+            }
+
+
+            if (b.respuestasCorrectas !== a.respuestasCorrectas) {
+                return b.respuestasCorrectas - a.respuestasCorrectas;
+            }
+
+
+            return a.tiempo_promedio - b.tiempo_promedio;
+        });
+
+        const ranki20 = estadoJugadores.slice(0, 20);
+
+        const esta = ranki20.some(objeto => objeto.id === ultimoJugador.id && objeto.nombre === ultimoJugador.nombre)
+
+        res.render('fin-juego', {
+            title: 'Fin del juego',
+            estadoJuego: ranki20,
+            ultimoJugador: ultimoJugador,
+            esta: esta
+        })
+    } catch (error) {
+        console.error('Error al leer categorías:', error);
+
+
+        res.render('fin-juego', {
+            title: 'Fin del juego',
+            estadoJuego: [],
+            ultimoJugador: null,
+            error: 'No hay jugadores para el rankin'
+        });
+    }
+
 }
 
 
-
+function formatearTiempo(totalSegundos) {
+    if (totalSegundos < 60) {
+        return `${totalSegundos} segundos`;
+    } else {
+        const minutos = Math.floor(totalSegundos / 60);
+        const segundosRestantes = totalSegundos % 60;
+        const segundosFormateados = segundosRestantes < 10 ? `0${segundosRestantes}` : segundosRestantes;
+        return `${minutos} minutos y ${segundosFormateados} segundos`;
+    }
+}
 
 
 
@@ -189,6 +251,37 @@ exports.obtenerPreguntasJuego = async (req, res) => {
         return res.json({ ok: true, data: preguntasLocal });
     }
 };
+
+
+
+exports.gurdarEstado = async (req, res) => {
+    try {
+
+
+        const archivo = await fs.readFile(estadoJuego, 'utf8')
+        const json = JSON.parse(archivo)
+        const data = req.body
+        console.log(json.length)
+
+        data.id = json.length + 1
+        json.push(data)
+        await fs.writeFile(estadoJuego, JSON.stringify(json, null, 2));
+        //respuesta del servidor al formulario
+        res.json({
+            ok: true,
+            msj: 'Estado del juego guardado'
+        })
+
+    } catch (error) {
+        console.log("servidor:", `Mensaje: ${error}`)
+        res.json({
+            ok: false,
+            msj: `Ocurrio un fallo, mensaje: ${error}`
+        })
+    }
+
+
+}
 
 
 
