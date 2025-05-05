@@ -137,6 +137,20 @@ function Ranquer() {
     const ranquer = document.querySelector("small#Ranquer")
     const cajaFin = document.querySelector("div#viewfin")
     const btnReiniciar = document.querySelector("a.boton-reiniciar")
+    const botonCollapse = document.getElementById('boton-collapse');
+    const contenidoCollapse = document.getElementById('contenido-collapse');
+
+    if (botonCollapse) {
+        botonCollapse.addEventListener('click', function () {
+            contenidoCollapse.classList.toggle('mostrar');
+            botonCollapse.textContent = contenidoCollapse.classList.contains('mostrar') ? 'Ocultar Rankin' : 'Ver Rankin';
+        });
+    }
+
+
+
+
+
     if (btnReiniciar) {
         btnReiniciar.addEventListener("click", () => {
             reiniciarTodo()

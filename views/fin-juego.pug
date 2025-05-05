@@ -26,30 +26,32 @@ block content
                     li Tiempo promedio: 
                         strong #{ultimoJugador.tiempo_promedio}
             .ranking
-                h2 Ranking
                 
-                table#ranking-table
-                    thead
-                        tr
-                            th Ranki
-                            th Nombre
-                            th Puntos
-                    tbody
-                         - let ranki=1
-                         each estado in estadoJuego
-                            if estado.nombre!==ultimoJugador.nombre
-                                
-                                tr.jugadoresRanki
-                                    td #{ranki}
-                                    td #{estado.nombre}
-                                    td #{estado.puntajeActual}
-                            else
-                                tr.jugadorActual
-                                    td #{ranki}
-                                    td #{estado.nombre}
-                                    td #{estado.puntajeActual}
-                            - ranki++
-                script(src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js") 
+                .contenedor-collapse
+                    button(id="boton-collapse" type="button") Ver Ranki
+                    div(id="contenido-collapse")
+                        table#ranking-table
+                            thead
+                                tr
+                                    th Ranki
+                                    th Nombre
+                                    th Puntos
+                            tbody
+                                - let ranki=1
+                                each estado in estadoJuego
+                                    if estado.nombre!==ultimoJugador.nombre
+                                        
+                                        tr.jugadoresRanki
+                                            td #{ranki}
+                                            td #{estado.nombre}
+                                            td #{estado.puntajeActual}
+                                    else
+                                        tr.jugadorActual
+                                            td #{ranki}
+                                            td #{estado.nombre}
+                                            td #{estado.puntajeActual}
+                                    - ranki++
+            script(src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js") 
         else 
             h4 Noy hay jugadores para armar el rankin
                                 
