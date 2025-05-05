@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "nombre": "Martin",
+    "inicio": true,
+    "finalizo": false,
+    "fecha": "5/5/2025",
+    "preguntaIndex": 10,
+    "puntajeActual": 5,
+    "respuestasCorrectas": 1,
+    "respuestasIncorrectas": 8,
+    "tiempo_promedio": 15
+  },
+  {
+    "id": 2,
+    "nombre": "ana",
+    "inicio": true,
+    "finalizo": false,
+    "fecha": "5/5/2025",
+    "preguntaIndex": 10,
+    "puntajeActual": 8,
+    "respuestasCorrectas": 2,
+    "respuestasIncorrectas": 7,
+    "tiempo_promedio": 5
+  },
+  {
+    "id": 3,
+    "nombre": "juna",
+    "inicio": true,
+    "finalizo": false,
+    "fecha": "5/5/2025",
+    "preguntaIndex": 10,
+    "puntajeActual": 15,
+    "respuestasCorrectas": 5,
+    "respuestasIncorrectas": 4,
+    "tiempo_promedio": 4
+  },
+  {
+    "id": 4,
+    "nombre": "andres",
+    "inicio": true,
+    "finalizo": false,
+    "fecha": "5/5/2025",
+    "preguntaIndex": 10,
+    "puntajeActual": 9,
+    "respuestasCorrectas": 3,
+    "respuestasIncorrectas": 6,
+    "tiempo_promedio": 4
+  },
+  {
+    "id": 5,
+    "nombre": "veronica",
+    "inicio": true,
+    "finalizo": false,
+    "fecha": "5/5/2025",
+    "preguntaIndex": 10,
+    "puntajeActual": 3,
+    "respuestasCorrectas": 1,
+    "respuestasIncorrectas": 8,
+    "tiempo_promedio": 7
+  },
+  {
+    "id": 6,
+    "nombre": "vale",
+    "inicio": true,
+    "finalizo": false,
+    "fecha": "5/5/2025",
+    "preguntaIndex": 10,
+    "puntajeActual": 1,
+    "respuestasCorrectas": 4,
+    "respuestasIncorrectas": 5,
+    "tiempo_promedio": 5
+  },
+  {
+    "nombre": "silvia",
+    "inicio": true,
+    "finalizo": false,
+    "fecha": "5/5/2025",
+    "preguntaIndex": 10,
+    "puntajeActual": 11,
+    "respuestasCorrectas": 3,
+    "respuestasIncorrectas": 6,
+    "tiempo_promedio": 6,
+    "id": 7
+  },
+  {
+    "nombre": "walter",
+    "inicio": true,
+    "finalizo": false,
+    "fecha": "5/5/2025",
+    "preguntaIndex": 10,
+    "puntajeActual": 14,
+    "respuestasCorrectas": 4,
+    "respuestasIncorrectas": 5,
+    "tiempo_promedio": 11,
+    "id": 8
+  },
+  {
+    "nombre": "mariano",
+    "inicio": true,
+    "finalizo": false,
+    "fecha": "5/5/2025",
+    "preguntaIndex": 10,
+    "puntajeActual": 8,
+    "respuestasCorrectas": 2,
+    "respuestasIncorrectas": 7,
+    "tiempo_promedio": 13,
+    "id": 9
+  }
+]

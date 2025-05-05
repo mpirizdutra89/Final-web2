@@ -2,7 +2,8 @@ extends layout.pug
 block content
      
       .caja-pregunta(id='preguntas_view')
-            h4.pregunta(id='preguntaActual')
+            h4.pregunta
+            img.img-pregunta
                   
                   
             
@@ -13,4 +14,4 @@ block content
 
          
                  
-      button.boton-siguiente Siguiente
+      button.boton-siguiente(id='next') Siguiente

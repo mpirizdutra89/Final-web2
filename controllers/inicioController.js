@@ -9,7 +9,7 @@ exports.inicio = (req, res) => {
         { nombre: "Pedro", puntos: 220 }
     ];
     //console.log(data)
-    console.log(req.originalUrl)
+    // console.log(req.originalUrl)
     res.render('inicio', {
         ranking: data
     });

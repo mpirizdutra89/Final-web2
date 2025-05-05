@@ -1,7 +1,12 @@
 const express = require('express')
 const path = require('path')
 const app = express()
-const PORT = 3000
+const DEFAULT_PORT = 3000;
+const DEFAULT_IP = 'localhost';
+const alwaysdataPort = process.env.ALWAYSDATA_HTTPD_PORT;
+const alwaysdataIP = process.env.ALWAYSDATA_HTTPD_IP;
+const HOST = alwaysdataIP || DEFAULT_IP;
+const PORT = alwaysdataPort || DEFAULT_PORT;
 const { notFound, errorHandler } = require('./middlewares/errorHandler');
 
 const inicio = require('./routes/inicio')
@@ -31,8 +36,9 @@ app.use(notFound);
 
 // Middleware de errores generales 
 app.use(errorHandler);
-
-app.listen(PORT, () => {
+/* ALWAYSDATA_HTTPD_ PORT
+ALWAYSDATA_HTTPD_IP */
+app.listen(PORT, HOST, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`)
 })
 
