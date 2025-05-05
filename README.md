@@ -67,11 +67,12 @@ Nota:EL directorio puede diferi, pero esta es la estructura basica.<br/>
    - <a href="http://preguntados.alwaysdata.net/" target="_blank">Url del juego en Internet</a> <br/><br/>
 
 ## 🎥 Deploy en [alwaysdata](https://www.alwaysdata.com/en/) :
-## Nota: En el video no explica bien el tema de los puertos, pero si van a app.js se van a dar cuenta como se hace, la informacion la saque de los logs del sitio (panel de herramientas de la pagina)
+
 
 <a href="https://youtu.be/zzwdLrSNgJw" target="_blank">
   <img src="https://i3.ytimg.com/vi/zzwdLrSNgJw/maxresdefault.jpg" alt="Ver demo en YouTube">
 </a>
+## Nota: En el video no explica bien el tema de los puertos, pero si van a app.js se van a dar cuenta como se hace, la informacion la saque de los logs del sitio (panel de herramientas de la pagina)
 
 ## ✍️ Autor
 
