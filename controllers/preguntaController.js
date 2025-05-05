@@ -6,7 +6,7 @@ const estadoJuego = path.join(__dirname, '../data/estado-juego.json');
 exports.nuevoJugador = (req, res) => {
 
 
-    res.render('preguntas', { titulo: 'Incicio del juego' })
+    res.render('preguntas', { titulo: 'Inicio del juego' })
 }
 //
 
