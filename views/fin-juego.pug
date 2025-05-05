@@ -39,7 +39,7 @@ block content
                             tbody
                                 - let ranki=1
                                 each estado in estadoJuego
-                                    if estado.nombre!==ultimoJugador.nombre
+                                    if estado.id!==ultimoJugador.id
                                         
                                         tr.jugadoresRanki
                                             td #{ranki}
