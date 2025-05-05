@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "texto": "Convertir mi script de notas en un futuro paquete npm, poder hacer mjeoras con argumento para mas adelante"
+  },
+  {
+    "id": 2,
+    "texto": "Agregar una nueva funcion por categorias o temas etc tambien poder ver notas activas y desactivas. Todo eso como proyecto personal"
+  },
+  {
+    "id": 4,
+    "texto": "ya solucione lo de la nota anterior. En otra vercion de este escrip deveria quedar desabilitada esa nota o hacer sub notas"
+  },
+  {
+    "id": 5,
+    "texto": "Falta la parte final el ranki, los sonidos, y hacermas pruebas"
+  }
+]
