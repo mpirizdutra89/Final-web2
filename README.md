@@ -30,6 +30,8 @@ Además, el juego se alimenta de datos en tiempo real desde la API pública de *
 - [Pug](https://pugjs.org/) – motor de plantillas para HTML
 - [REST Countries API](https://restcountries.com/) – para obtener datos de países
 - **CSS puro** – diseño y estilos hechos a mano
+- **Efectos de sonido** - para botones y fin de juego
+- [Efecto conffeti](https://github.com/catdad/canvas-confetti) - Para fin del juego
 
 ## 📁 Estructura basica del proyecto
 
