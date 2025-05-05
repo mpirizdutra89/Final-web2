@@ -25,8 +25,7 @@ Además, el juego se alimenta de datos en tiempo real desde la API pública de *
 
 ## 🚀 Tecnologías utilizadas
 
-- [Node.js](https://nodejs.org/) – entorno de ejecución JavaScript (version 20.14.0 local
-)
+- [Node.js](https://nodejs.org/) – entorno de ejecución JavaScript (version 20.14.0 local, en produccion  esta la vercion 20)
 - [Express](https://expressjs.com/) – framework para servidores web
 - [Pug](https://pugjs.org/) – motor de plantillas para HTML
 - [REST Countries API](https://restcountries.com/) – para obtener datos de países
