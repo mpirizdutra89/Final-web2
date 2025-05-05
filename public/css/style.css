@@ -398,6 +398,7 @@ button.opcion:active {
     margin-top: 10px;
     border-color: #ccc;
     padding: 10px;
+    overflow-y: auto;
 }
 
 .contenedor-collapse button {
