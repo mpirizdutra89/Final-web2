@@ -39,14 +39,6 @@ Ranquer()
 
 
 //para borrar , para pruebas depues sacar
-const btnPruebas = document.querySelector("#btnPruebas")
-if (btnPruebas) {
-    btnPruebas.addEventListener("click", function () {
-        reiniciarTodo()
-        // sonidos.ok.currentTime = 0;
-        //sonidos.ok.play();
-    })
-}
 
 
 
@@ -141,34 +133,60 @@ function formularioInicio_view() {
   }, */
 
 function Ranquer() {
+
+    const btnResultado = document.querySelector("#btnResultados")
     const ranquer = document.querySelector("small#Ranquer")
+    const cajaFin = document.querySelector("div#viewfin")
+    const btnReiniciar = document.querySelector("a.boton-reiniciar")
+
+    btnReiniciar.addEventListener("click", () => {
+        reiniciarTodo()
+    })
+
     if (ranquer) {
 
-        const duration = 5 * 1000;
-        const end = Date.now() + duration;
-        reproducirSonido('exito')
-        function frame() {
-            confetti({
-                particleCount: 7,
-                angle: 60,
-                spread: 55,
-                origin: { x: 0 }
-            });
+        cajaFin.style.visibility = 'hidden';
+        btnResultado.style.visibility = 'visible';
 
-            confetti({
-                particleCount: 7,
-                angle: 120,
-                spread: 55,
-                origin: { x: 1 }
-            });
+        btnResultado.addEventListener('click', () => {
+            btnResultado.style.visibility = 'hidden';
+            cajaFin.style.visibility = 'visible';
 
-            if (Date.now() < end) {
-                animationFrameId = requestAnimationFrame(frame);
+            const duration = 5 * 1000;
+            const end = Date.now() + duration;
+            let animationFrameId;
+
+            function frame() {
+                confetti({
+                    particleCount: 7,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 }
+                });
+
+                confetti({
+                    particleCount: 7,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 }
+                });
+
+                if (Date.now() < end) {
+                    animationFrameId = requestAnimationFrame(frame);
+                }
             }
-        }
+            reproducirSonido('exito')
+            // Inicia la animación
+            frame();
+        })
 
-        // Inicia la animación
-        frame();
+
+
+        /*  */
+    } else {
+        cajaFin.style.visibility = 'visible'
+        btnResultado.style.visibility = 'hidden';
+
     }
 }
 
@@ -189,6 +207,8 @@ function mostrarPregunta(preguntaObj, index = 0) {
     preguntaObj.opciones.forEach((item, i) => {
         opciones.innerHTML += `<button class='opcion' data-id='${i}' data-index='${index}' data-name='${item}'>${item}</button>`
     });
+
+    document.querySelector(".banner").style.visibility = 'visible';
 
     habilitarSiguiente = false;
     HabilitarContenedorOpciones(false, contenedorOpciones)

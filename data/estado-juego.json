@@ -82,5 +82,29 @@
     "respuestasIncorrectas": 6,
     "tiempo_promedio": 6,
     "id": 7
+  },
+  {
+    "nombre": "walter",
+    "inicio": true,
+    "finalizo": false,
+    "fecha": "5/5/2025",
+    "preguntaIndex": 10,
+    "puntajeActual": 14,
+    "respuestasCorrectas": 4,
+    "respuestasIncorrectas": 5,
+    "tiempo_promedio": 11,
+    "id": 8
+  },
+  {
+    "nombre": "mariano",
+    "inicio": true,
+    "finalizo": false,
+    "fecha": "5/5/2025",
+    "preguntaIndex": 10,
+    "puntajeActual": 8,
+    "respuestasCorrectas": 2,
+    "respuestasIncorrectas": 7,
+    "tiempo_promedio": 13,
+    "id": 9
   }
 ]

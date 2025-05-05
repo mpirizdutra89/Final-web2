@@ -1,10 +1,13 @@
 extends layout.pug
 block content
-    .caja-inicio
+
+    .boton-flotante-resultados.atrayendo-atencion(id='btnResultados') RESULTADOS
+    .caja-inicio(id='viewfin' style='visibility:hidden')
             
         if estadoJuego && ultimoJugador && estadoJuego.length > 0
             div(id='finJuego')
-                h4(style='text-align: center') Juego terminado 
+                h4(style='text-align: center') 
+                    a.boton-reiniciar(href='#') Volver a jugar 
                 if !esta 
                     small.fuera Estas fuera del ranki.
                 else 

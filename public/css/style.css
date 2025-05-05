@@ -3,14 +3,15 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    background: linear-gradient(to right, #74ebd5, #acb6e5); /* Fondo con gradiente */
-    color: #333; /* Color de texto más oscuro para contraste */
+    background: linear-gradient(to right, #74ebd5, #acb6e5); 
+    color: #333; 
     margin: 0;
     font-family: Arial, sans-serif;
 }
 
 .banner {
-    background-color: rgba(230, 57, 70, 0.9); /* Fondo semi-transparente para el banner */
+    visibility: hidden;
+    background-color: rgba(230, 57, 70, 0.9); 
     color: white;
     font-size: 24px;
     font-weight: bold;
@@ -20,7 +21,8 @@ body {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    border-bottom: 3px solid #fff; /* Agregar una línea en la parte inferior para separar */
+    border-bottom: 3px solid #fff; 
+    margin-bottom: 15px;
 }
 
 
@@ -30,13 +32,13 @@ body {
 }
 
 .puntos #puntaje {
-  font-size: 1.5em;
-  font-weight: bolder; /* Negrita más intensa */
-  color: #ffcc00; /* Color amarillo/dorado para el timer (destacado) */
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente para el timer */
+  font-size: 1.2em;
+  font-weight: bolder; 
+  color: #ffcc00; 
+  background-color: rgba(0, 0, 0, 0.5); 
   padding: 8px 15px;
   border-radius: 5px;
-  border: 1px solid #ffcc00; /* Borde sutil */
+  border: 1px solid #ffcc00; 
 }
 
 .flag{
@@ -44,31 +46,24 @@ body {
   width: 50%;
 }
 .perfil {
-  background-color: #222; /* Fondo oscuro para el banner */
-  color: #fff; /* Color de texto principal en el banner */
+  background-color: #222; 
+  color: #fff; 
   padding: 25px 30px;
   border-radius: 8px;
-  /* display: flex;
-  align-items: center;
-  justify-content: flex-end; */
+  
 }
 
 .perfil #tiempo {
-  font-size: 1.5em;
-  font-weight: bolder; /* Negrita más intensa */
-  color: #ffcc00; /* Color amarillo/dorado para el timer (destacado) */
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente para el timer */
+  font-size: 1.2em;
+  font-weight: bolder; 
+  color: #ffcc00; 
+  background-color: rgba(0, 0, 0, 0.5); 
   padding: 8px 15px;
   border-radius: 5px;
-  border: 1px solid #ffcc00; /* Borde sutil */
+  border: 1px solid #ffcc00; 
 }
 
-/* .texto-banner {
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
-    padding-right: 6%;
-} */
+
 .texto-banner {
  
   background-color: rgba(0, 0, 0, 0.7); 
@@ -76,11 +71,11 @@ body {
   padding: 20px ;
   border-radius: 10px;
   text-align: center; 
-  /* margin-bottom: 20px; */ 
+ 
 }
 
 .texto-banner h2.name-jugador {
-  font-size: 1.5em; 
+  font-size: 1.3em; 
   font-weight: bolder; 
   color: #ffcc00; 
   margin-top: 0; 
@@ -95,10 +90,9 @@ body {
     gap: 15px;
     width: 90%;
     max-width: 400px;
-    padding: 10px;
-   /*  background: rgba(255, 255, 255, 0.8); */ /* Fondo semi-transparente para el contenedor */
+    margin-bottom: 15px;
     border-radius: 15px;
-    /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); */
+   
 }
 h4 {
   font-size: 1.2em;
@@ -110,9 +104,9 @@ h4 {
 .informacion-juego  {
   list-style: none;
   padding: 15px;
-  background-color: #f9f9f9; /* Un gris muy claro */
+  background-color: #f9f9f9; 
   border-radius: 5px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); 
   text-align: left;
   font-weight: bold;
 }
@@ -235,9 +229,44 @@ button.opcion:active {
     outline: none;
 }
 
+
+.boton-reiniciar {
+  display: inline-flex; 
+  align-items: center; 
+  padding: 8px 15px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: #dc3545; 
+  background-color: #f8d7da; 
+  border: 1px solid #f5c6cb; 
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.boton-reiniciar::before {
+  content: "\21BB"; 
+  font-size: 1.2em;
+  margin-right: 8px;
+}
+
+.boton-reiniciar:hover {
+  background-color: #c82333; 
+  color: #fff;
+  border-color: #bd2130;
+}
+
+.boton-reiniciar:active {
+  background-color: #ac1929; 
+  border-color: #a41724;
+}
+
+/*  */
+
 .caja-inicio {
     background: white;
-    padding: 40px;
+    padding: 5px 30px 25px 30px;
     border-radius: 15px;
     text-align: center;
     width: 100%; 
@@ -257,7 +286,7 @@ button.opcion:active {
     padding: 40px;
     border-radius: 15px;
     text-align: center;
-    /* width: 100%; */
+    
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -286,27 +315,7 @@ button.opcion:active {
     outline: none;
 } 
 
-
-
-/* .pantalla-bienvenida {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background: linear-gradient(to right, #74ebd5, #acb6e5);
-    color: white;
-    height: 100vh;
-  } */
-  .ranking {
-  /*   width: 100%;
-    max-width: 600px; */
-    margin: 0 auto;
-    
-   /*  border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
-}
+  .ranking {margin: 0 auto;  }
 
 .ranking h2 {
     font-size: 24px;
@@ -317,7 +326,7 @@ button.opcion:active {
 
 .contenedor-deshabilitado {
   opacity: 0.5; 
-  pointer-events: none; /* Evita que los elementos dentro reciban eventos del ratón */
+  pointer-events: none;
 }
 
 
@@ -387,8 +396,61 @@ small#Ranquer{
       color: wheat; 
     }
   }
+
+
+/* Boton fin */
+.boton-flotante-resultados {
   
-  .ranking tbody tr td { /* Estilo para la columna de nombre */
+  visibility: hidden;
+
+  position: fixed; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  background-color: #222; 
+  
+  border-radius: 50%; 
+  width: 150px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.4); 
+  z-index: 1000; 
+  cursor: pointer;
+  text-decoration: none; 
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  color:#ffcc00
+}
+
+.boton-flotante-resultados:hover {
+  color:#222;
+  background-color: #e0a800; 
+  transform: translate(-50%, -50%) scale(1.05); 
+}
+
+/* Animación para atraer la atención */
+.boton-flotante-resultados.atrayendo-atencion {
+  animation: atraer-atencion 2s infinite alternate;
+}
+
+@keyframes atraer-atencion {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.05); 
+    opacity: 1;
+   
+  }
+}
+
+/* ################# */
+  
+  .ranking tbody tr td { 
     font-weight: bold;
     color: inherit;
   }
@@ -410,21 +472,17 @@ small#Ranquer{
   }
 
   .ranking tbody tr.recien-agregado {
-    background-color: #e63946 !important; /* Un color celeste suave para destacar */
+    background-color: #e63946 !important; 
     color: white !important;
-    transition: background-color 1s ease-in-out; /* Transición suave para el cambio de color */
-    /* Otros estilos que desees aplicar a la fila recién agregada */
-    /* Por ejemplo: */
-    /* border-left: 5px solid #00bcd4; */
-    /* font-weight: bold; */
-    /* color: #2196f3; */
+    transition: background-color 1s ease-in-out; 
+   
   }
 
 
   .particle {
     width: 10px;
     height: 10px;
-    background-color: yellow; /* Color por defecto, se sobrescribe en JS */
+    background-color: yellow; 
     border-radius: 50%;
     position: absolute;
     opacity: 1;
@@ -433,7 +491,7 @@ small#Ranquer{
 
   
   .container-btn-input {
-    display: flex; /* Alinea los elementos en la misma línea */
+    display: flex; 
     margin-top: 20px;
   }
   
@@ -460,7 +518,7 @@ small#Ranquer{
     color: white;
     border: none;
     padding: 12px 25px;
-    border-radius: 0 5px 5px 0; /* Bordes redondeados solo a la derecha */
+    border-radius: 0 5px 5px 0; 
     cursor: pointer;
     font-size: 16px;
   }
@@ -475,7 +533,7 @@ small#Ranquer{
   }
 
   .error-message {
-    display: block; /* Para que ocupe una línea y no se mezcle con el input */
+    display: block; 
     color: red;
     font-size: 0.8em;
     margin-top: 5px;
@@ -518,8 +576,8 @@ small#Ranquer{
 
   /* loader basico */
   .loader {
-    border: 8px solid #f3f3f3; /* Gris claro sólido */
-    border-top: 8px solid #3498db; /* Azul */
+    border: 8px solid #f3f3f3; 
+    border-top: 8px solid #3498db; 
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -564,18 +622,18 @@ small#Ranquer{
  
   /* Contenedor para centrar el cubo */
 .sk-folding-cube-container {
-    position: fixed; /* Para que flote */
+    position: fixed; 
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Centrarlo */
-    z-index: 1000; /* Asegurarse de que esté por encima de otros elementos si es necesario */
+    transform: translate(-50%, -50%); 
+    z-index: 1000; 
     display: none;
   }
   
   .sk-folding-cube {
-    margin: 0 auto; /* Eliminar el margen automático que podría interferir con el centrado */
-    width: 80px; /* Hacerlo más grande */
-    height: 80px; /* Hacerlo más grande */
+    margin: 0 auto; 
+    width: 80px; 
+    height: 80px; 
     position: relative;
     transform: rotateZ(45deg);
   }
@@ -585,7 +643,7 @@ small#Ranquer{
     width: 50%;
     height: 50%;
     position: relative;
-    transform: scale(1.5); /* Hacer los cubos internos más grandes */
+    transform: scale(1.5); 
   }
   
   .sk-folding-cube .sk-cube:before {
@@ -593,7 +651,7 @@ small#Ranquer{
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background-color: rgba(230, 57, 70, 0.9); /* Puedes cambiar el color */
+    background-color: rgba(230, 57, 70, 0.9); 
     animation: sk-foldCubeAngle 2.4s infinite linear both;
     transform-origin: 100% 100%;
   }
