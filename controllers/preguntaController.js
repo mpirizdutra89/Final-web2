@@ -44,7 +44,7 @@ exports.finJuego = async (req, res) => {
         const esta = ranki20.some(objeto => objeto.id === ultimoJugador.id && objeto.nombre === ultimoJugador.nombre)
 
         res.render('fin-juego', {
-            title: 'Fin del juego',
+            titulo: 'Fin del juego',
             estadoJuego: ranki20,
             ultimoJugador: ultimoJugador,
             esta: esta
@@ -54,7 +54,7 @@ exports.finJuego = async (req, res) => {
 
 
         res.render('fin-juego', {
-            title: 'Fin del juego',
+            titulo: 'Fin del juego',
             estadoJuego: [],
             ultimoJugador: null,
             error: 'No hay jugadores para el rankin'
