@@ -133,6 +133,9 @@ function formularioInicio_view() {
 
 function Ranquer() {
 
+    let estadoJuego = JSON.parse(getLocalJugador())
+
+
     const btnResultado = document.querySelector("#btnResultados")
     const ranquer = document.querySelector("small#Ranquer")
     const cajaFin = document.querySelector("div#viewfin")
@@ -152,6 +155,9 @@ function Ranquer() {
 
 
     if (btnReiniciar) {
+        if (!estadoJuego) {
+            reiniciarTodo()
+        }
         btnReiniciar.addEventListener("click", () => {
             reiniciarTodo()
         })
