@@ -39,6 +39,6 @@ app.use(errorHandler);
 /* ALWAYSDATA_HTTPD_ PORT
 ALWAYSDATA_HTTPD_IP */
 app.listen(PORT, HOST, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`)
+  console.log(`Servidor corriendo en http://${HOST}:${PORT}`)
 })
 
