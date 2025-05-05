@@ -9,9 +9,9 @@ block content
                 h4(style='text-align: center') 
                     a.boton-reiniciar(href='#') Volver a jugar 
                 if !esta 
-                    small.fuera Estas fuera del ranki.
+                    small.fuera Estas fuera del Ranking.
                 else 
-                    small#Ranquer Estas dentro del ranki    
+                    small#Ranquer Estas dentro del Ranking    
                 ul.ultimo-jugador
                     li Nombre:
                         strong #{ultimoJugador.nombre}
@@ -28,12 +28,12 @@ block content
             .ranking
                 
                 .contenedor-collapse
-                    button(id="boton-collapse" type="button") Ver Ranki
+                    button(id="boton-collapse" type="button") Ver Ranking
                     div(id="contenido-collapse")
                         table#ranking-table
                             thead
                                 tr
-                                    th Ranki
+                                    th Ranking
                                     th Nombre
                                     th Puntos
                             tbody
